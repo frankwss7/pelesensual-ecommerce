@@ -2,15 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "src/main.py",
+      "src": "pelesensual-backend/src/main.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "src/main.py"
+      "dest": "pelesensual-backend/src/main.py"
     }
   ]
 }
-
