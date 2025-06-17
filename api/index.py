@@ -1,1 +1,3 @@
-from pelesensual-backend.src.main import app as application
+from pelesensual_backend.src.main import app as application
+
+
