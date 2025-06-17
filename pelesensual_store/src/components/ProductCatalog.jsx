@@ -82,16 +82,21 @@ const ProductCatalog = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {filteredProducts.map(product => {
             const price = pricingMode === 'wholesale' ? product.wholesalePrice : product.retailPrice;
-            
+
             return (
               <div key={product.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
                 {/* Product Image */}
                 <div className="relative group">
-                  <img 
-                    src={product.image} 
-                    alt={product.name}
-                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                  <div className="h-64 flex items-center justify-center overflow-hidden bg-gray-100">
+                    <img 
+                      src={product.image} 
+                      alt={product.name}
+                      className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                      onError={(e) => { e.target.style.display = 'none'; }}
+                    />
+                  </div>
+
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
                     <button
                       onClick={() => setSelectedProduct(product)}
@@ -100,8 +105,7 @@ const ProductCatalog = () => {
                       <Eye className="w-5 h-5" />
                     </button>
                   </div>
-                  
-                  {/* Pricing Mode Badge */}
+
                   {pricingMode === 'wholesale' && (
                     <div className="absolute top-3 left-3 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">
                       Atacado
@@ -164,7 +168,7 @@ const ProductCatalog = () => {
                         ))}
                       </div>
                     )}
-                    
+
                     {/* Main Add Button */}
                     <button
                       onClick={() => handleAddToCart(product)}
@@ -200,5 +204,3 @@ const ProductCatalog = () => {
 };
 
 export default ProductCatalog;
-
-
