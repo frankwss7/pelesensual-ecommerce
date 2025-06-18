@@ -64,12 +64,10 @@ const HeroBanner = () => {
             index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
           }`}
         >
-          <div 
+          <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${slide.image})` }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
-          </div>
+          />
 
           <div className="relative z-10 h-full flex items-center">
             <div className="container mx-auto px-4">
@@ -100,7 +98,7 @@ const HeroBanner = () => {
       >
         <ChevronLeft className="w-6 h-6" />
       </button>
-      
+
       <button
         onClick={nextSlide}
         className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
