@@ -88,17 +88,17 @@ const ProductCatalog = () => {
                 {/* Product Image */}
                 <div className="relative group">
                   <div className="h-64 flex items-center justify-center overflow-hidden bg-gray-100">
-                    <img
-                      src={product.image}
+                    <img 
+                      src={product.image} 
                       alt={product.name}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                       loading="lazy"
-                      onError={(e) => {
-                        e.target.src = '/images/fallback.jpg';
-                      }}
+                      onError={(e) => { e.target.src = '/images/fallback.jpg'; }}
                     />
                   </div>
-                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+
+                  {/* Overlay Removido */}
+                  <div className="absolute inset-0 bg-transparent transition-all duration-300 flex items-center justify-center">
                     <button
                       onClick={() => setSelectedProduct(product)}
                       className="bg-white text-gray-800 p-3 rounded-full shadow-lg transform scale-0 group-hover:scale-100 transition-all duration-300 hover:bg-pink-50"
@@ -106,6 +106,7 @@ const ProductCatalog = () => {
                       <Eye className="w-5 h-5" />
                     </button>
                   </div>
+
                   {pricingMode === 'wholesale' && (
                     <div className="absolute top-3 left-3 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">
                       Atacado
@@ -126,7 +127,7 @@ const ProductCatalog = () => {
                     <p className="text-sm text-gray-600 mb-2">Tamanhos disponíveis:</p>
                     <div className="flex flex-wrap gap-1">
                       {product.sizes.map(size => (
-                        <span
+                        <span 
                           key={size}
                           className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-md"
                         >
@@ -169,6 +170,7 @@ const ProductCatalog = () => {
                       </div>
                     )}
 
+                    {/* Main Add Button */}
                     <button
                       onClick={() => handleAddToCart(product)}
                       className="w-full bg-pink-600 text-white py-3 rounded-lg font-medium hover:bg-pink-700 transition-colors flex items-center justify-center gap-2"
@@ -193,7 +195,7 @@ const ProductCatalog = () => {
 
       {/* Product Modal */}
       {selectedProduct && (
-        <ProductModal
+        <ProductModal 
           product={selectedProduct}
           onClose={() => setSelectedProduct(null)}
         />
