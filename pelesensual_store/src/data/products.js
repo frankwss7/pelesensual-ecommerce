@@ -281,5 +281,5 @@ export const categories = [
 ];
 
 export const wholesaleMinQuantity = 200;
-export const wholesalePackageQuantity = 10; // Produtos vendidos em pacotes de 10 em 10
+export const wholesalePackageQuantity = 10;
 
