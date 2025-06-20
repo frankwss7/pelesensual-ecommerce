@@ -209,20 +209,20 @@ export const products = [
     description: "Calça infantil para menina moça em cotton amaciado, confortável e ideal para o dia a dia."
   },
   {
-   id: "028",
-   name: "Box Feminina Infantil",
-   material: "Microfibra",
-   sizes: ["M", "G", "GG"],
-   retailPrice: 7.80,
-   wholesalePrice: 6.00,
-   image: "/images/box_feminina_infantil_028_frente.png",
-   images: [
-    "/images/box_feminina_infantil_028_frente.png",
-    "/images/box_feminina_infantil_028_costas.png"
-   ],
-   category: "infantil",
-   description: "Box feminina infantil em microfibra, com design confortável e divertido."
-  },
+    id: "028",
+    name: "Box Feminina Infantil",
+    material: "Microfibra",
+    sizes: ["M", "G", "GG"],
+    retailPrice: 7.80,
+    wholesalePrice: 6.00,
+    image: "/images/box_feminina_infantil_028_frente.png",
+    images: [
+      "/images/box_feminina_infantil_028_frente.png",
+      "/images/box_feminina_infantil_028_costas.png"
+    ],
+    category: "infantil",
+    description: "Box feminina infantil em microfibra, com design confortável e divertido."
+  }
   {
     id: "026",
     name: "Box Feminina Adulto",
