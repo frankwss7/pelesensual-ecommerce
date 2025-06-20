@@ -41,17 +41,13 @@ def generate_pix_qr_code(amount, description, transaction_id):
 
 @payment_bp.route('/create-pix-payment', methods=['POST'])
 def create_pix_payment():
-    """
-    Cria um pagamento PIX e retorna o QR Code
-    """
-    try:
-        data = request.get_json()
-        
-        # Validar dados recebidos
-        required_fields = ['amount', 'items', 'customer']
-        for field in required_fields:
-            if field not in data:
-                return jsonify({'error': f'Campo {field} é obrigatório'}), 400
+    ...
+    qr_code_base64, pix_payload = generate_pix_qr_code(amount, description, transaction_id)
+    ...
+    return jsonify({
+        'success': True,
+        'payment': payment_data
+    })
         
         amount = float(data['amount'])
         items = data['items']
