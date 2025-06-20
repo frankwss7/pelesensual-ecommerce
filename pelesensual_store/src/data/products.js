@@ -215,9 +215,9 @@ export const products = [
     sizes: ["M", "G", "GG"],
     retailPrice: 7.80,
     wholesalePrice: 6.00,
-    image: "/images/box_feminina_inf_028.png", // Imagem adicionada
-    images: [
-      "/images/box_feminina_inf_028.png"
+   image: "/images/box_feminina_inf_028.png",
+  images: [
+    "/images/box_feminina_inf_028.png"
     ],
     category: "infantil",
     description: "Box feminina infantil em microfibra, com design confortável e divertido."
