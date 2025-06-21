@@ -1,20 +1,10 @@
 {
-  "projects": {
-    "frontend": {
-      "source": "pelesensual_store",
-      "framework": "vite"
-    },
-    "backend": {
-      "source": "pelesensual_backend",
-      "buildCommand": "pip install -r requirements.txt",
-      "outputDirectory": "",
-      "ignoreCommand": "false"
-    }
-  },
+  "buildCommand": "pip install -r requirements.txt",
+  "outputDirectory": "",
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/pelesensual_backend/main.py"
+      "destination": "/api/$1"
     }
   ]
 }
