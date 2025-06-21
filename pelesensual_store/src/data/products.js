@@ -222,7 +222,7 @@ export const products = [
     ],
     category: "infantil",
     description: "Box feminina infantil em microfibra, com design confortável e divertido."
-  }
+  },
   {
     id: "026",
     name: "Box Feminina Adulto",
