@@ -6,6 +6,7 @@ const PaymentModal = ({ isOpen, onClose }) => {
   const [paymentMethod, setPaymentMethod] = useState('pix');
   const [paymentStatus, setPaymentStatus] = useState('selecting'); // selecting, processing, success, error
   const [pixData, setPixData] = useState(null);
+  const [carregando, setCarregando] = useState(false); // Estado para controle de loading
   const [customerData, setCustomerData] = useState({
     name: '',
     email: '',
@@ -35,92 +36,119 @@ const PaymentModal = ({ isOpen, onClose }) => {
     }));
   };
 
+  // FUNÇÃO CORRIGIDA PARA PIX
   const createPixPayment = async () => {
     try {
+      setCarregando(true);
       setPaymentStatus('processing');
       
-      const response = await fetch('https://kkh7ikcgyvw9.manus.space/api/create-pix-payment', {
+      const dadosPedido = {
+        amount: getTotalPrice(),
+        items: items.map(item => ({
+          id: item.id,
+          name: item.name,
+          size: item.size,
+          quantity: item.quantity,
+          price: pricingMode === 'wholesale' ? item.wholesalePrice : item.retailPrice
+        })),
+        customer: customerData
+      };
+      
+      const response = await fetch('/api/pedidos/pix', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          amount: getTotalPrice(),
-          items: items.map(item => ({
-            id: item.id,
-            name: item.name,
-            size: item.size,
-            quantity: item.quantity,
-            price: pricingMode === 'wholesale' ? item.wholesalePrice : item.retailPrice
-          })),
-          customer: customerData
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dadosPedido)
       });
 
-      const data = await response.json();
+      const resultado = await response.json();
       
-      if (data.success) {
-        setPixData(data.payment);
+      // IMPORTANTE: SÓ mostrar sucesso se realmente funcionou
+      if (resultado.success) {
+        setPixData(resultado.payment);
         setPaymentStatus('success');
       } else {
-        setPaymentStatus('error');
+        throw new Error(resultado.error || 'Erro no pagamento PIX');
       }
+      
     } catch (error) {
       console.error('Erro ao criar pagamento PIX:', error);
       setPaymentStatus('error');
+      alert(`Erro: ${error.message}`);
+      // NUNCA mostrar "Pagamento Aprovado" aqui!
+    } finally {
+      setCarregando(false);
     }
   };
 
+  // FUNÇÃO CORRIGIDA PARA CARTÃO
   const createCardPayment = async () => {
     try {
+      setCarregando(true);
       setPaymentStatus('processing');
       
-      const response = await fetch('https://kkh7ikcgyvw9.manus.space/api/create-card-payment', {
+      const dadosPedido = {
+        amount: getTotalPrice(),
+        items: items.map(item => ({
+          id: item.id,
+          name: item.name,
+          size: item.size,
+          quantity: item.quantity,
+          price: pricingMode === 'wholesale' ? item.wholesalePrice : item.retailPrice
+        })),
+        customer: customerData,
+        card_data: cardData
+      };
+      
+      const response = await fetch('/api/pedidos/checkout', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          amount: getTotalPrice(),
-          items: items.map(item => ({
-            id: item.id,
-            name: item.name,
-            size: item.size,
-            quantity: item.quantity,
-            price: pricingMode === 'wholesale' ? item.wholesalePrice : item.retailPrice
-          })),
-          customer: customerData,
-          card_data: cardData
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dadosPedido)
       });
 
-      const data = await response.json();
+      const resultado = await response.json();
       
-      if (data.success) {
-        setPaymentStatus('success');
-        clearCart();
+      // IMPORTANTE: SÓ mostrar sucesso se realmente funcionou
+      if (resultado.success) {
+        // Para cartão, redirecionar para checkout do PagBank
+        if (resultado.link_pagamento) {
+          window.location.href = resultado.link_pagamento;
+        } else {
+          // Se não há link, considerar como sucesso direto
+          setPaymentStatus('success');
+          clearCart();
+        }
       } else {
-        setPaymentStatus('error');
+        throw new Error(resultado.error || 'Erro no pagamento com cartão');
       }
+      
     } catch (error) {
       console.error('Erro ao processar pagamento:', error);
       setPaymentStatus('error');
+      alert(`Erro: ${error.message}`);
+      // NUNCA mostrar "Pagamento Aprovado" aqui!
+    } finally {
+      setCarregando(false);
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    if (paymentMethod === 'pix') {
+  // FUNÇÃO PRINCIPAL CORRIGIDA
+  const finalizarPagamento = (metodoPagamento) => {
+    if (metodoPagamento === 'pix') {
       createPixPayment();
     } else {
       createCardPayment();
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    finalizarPagamento(paymentMethod);
+  };
+
   const resetModal = () => {
     setPaymentStatus('selecting');
     setPixData(null);
+    setCarregando(false);
     setCustomerData({ name: '', email: '', phone: '', cpf: '' });
     setCardData({ number: '', name: '', expiry: '', cvv: '' });
   };
@@ -294,9 +322,10 @@ const PaymentModal = ({ isOpen, onClose }) => {
               {/* Botão de Finalizar */}
               <button
                 onClick={handleSubmit}
-                className="w-full bg-pink-600 text-white py-4 rounded-lg font-medium hover:bg-pink-700 transition-colors"
+                disabled={carregando}
+                className="w-full bg-pink-600 text-white py-4 rounded-lg font-medium hover:bg-pink-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Finalizar Pagamento - R$ {getTotalPrice().toFixed(2)}
+                {carregando ? 'Processando...' : `Finalizar Pagamento - R$ ${getTotalPrice().toFixed(2)}`}
               </button>
             </>
           )}
@@ -384,4 +413,3 @@ const PaymentModal = ({ isOpen, onClose }) => {
 };
 
 export default PaymentModal;
-
