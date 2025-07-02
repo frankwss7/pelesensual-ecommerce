@@ -279,53 +279,64 @@ export const products = [
   },
 
   // NOVOS PRODUTOS - DORMIR SENSUAL
+  export const products = [
   {
-    id: "DS001",
-    name: "Camisola Sensual Rosa Claro",
-    material: "Microfibra com Renda",
+    id: 1,
+    name: "Camisola Lolita",
+    description: "Microfibra com Renda",
+    ref: "DS001",
+    price: 70.00,
+    originalPrice: 53.85,
     sizes: ["P", "M", "G"],
-    retailPrice: 70.00,
-    wholesalePrice: 53.85, // Mantendo a proporção dos outros produtos (aprox. 77%)
-    image: "/images/dormir_sensual/camisola_rosa_claro_frente.png",
     images: [
-      "/images/dormir_sensual/camisola_rosa_claro_frente.png",
-      "/images/dormir_sensual/camisola_rosa_claro_costas.png"
+      '/images/Camisola Lolita.jpg',
+      '/images/Camisola Lolita costas.jpg'
     ],
-    category: "dormir_sensual",
-    description: "Camisola sensual em microfibra com detalhes em renda delicada. Design romântico e confortável, perfeita para momentos especiais. Alças finas ajustáveis e caimento fluido que valoriza a silhueta."
+    category: "camisola"
   },
   {
-    id: "DS002",
-    name: "Baby Doll Rosa Vibrante",
-    material: "Microfibra com Renda",
+    id: 2,
+    name: "ShortDoll Elegance",
+    description: "Microfibra com Renda",
+    ref: "DS002", 
+    price: 70.00,
+    originalPrice: 53.85,
     sizes: ["P", "M", "G"],
-    retailPrice: 70.00,
-    wholesalePrice: 53.85,
-    image: "/images/dormir_sensual/baby_doll_rosa_vibrante_frente.png",
     images: [
-      "/images/dormir_sensual/baby_doll_rosa_vibrante_frente.png",
-      "/images/dormir_sensual/baby_doll_rosa_vibrante_costas.png"
+      '/images/Shortdoll Elegance.jpg',
+      '/images/ShortDoll Elegance costas.jpg'
     ],
-    category: "dormir_sensual",
-    description: "Baby doll em tom rosa vibrante com renda sofisticada no busto e barra. Corte império que proporciona conforto e elegância. Ideal para noites românticas com muito estilo e sensualidade."
+    category: "shortdoll"
   },
   {
-    id: "DS003",
-    name: "Conjunto Pijama Rosa",
-    material: "Microfibra com Renda",
+    id: 3,
+    name: "ShortDoll Starjane",
+    description: "Microfibra com Renda", 
+    ref: "DS003",
+    price: 70.00,
+    originalPrice: 53.85,
     sizes: ["P", "M", "G"],
-    retailPrice: 70.00,
-    wholesalePrice: 53.85,
-    image: "/images/dormir_sensual/conjunto_pijama_rosa_frente.png",
     images: [
-      "/images/dormir_sensual/conjunto_pijama_rosa_frente.png",
-      "/images/dormir_sensual/conjunto_pijama_rosa_costas.png"
+      '/images/short doll Starjane - Copia.jpg',
+      '/images/shortdoll starjane frente.jpg'
     ],
-    category: "dormir_sensual",
-    description: "Conjunto de pijama feminino composto por blusa e short em microfibra macia. Detalhes em renda que conferem delicadeza e feminilidade. Perfeito para dormir com conforto e acordar radiante."
+    category: "shortdoll"
+  },
+  {
+    id: 4,
+    name: "Camisola Elegance",
+    description: "Microfibra com Renda",
+    ref: "DS004",
+    price: 70.00,
+    originalPrice: 53.85,
+    sizes: ["P", "M", "G"],
+    images: [
+      '/images/camisola elegance.jpg',
+      '/images/camisola elegance costas.jpg'
+    ],
+    category: "camisola"
   }
 ];
-
 export const categories = [
   { 
     id: "adulto", 
