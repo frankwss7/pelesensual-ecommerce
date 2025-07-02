@@ -1,23 +1,16 @@
-const express = require('express');
-const cors = require('cors');
+// SEMPRE no topo do arquivo server.js
 require('dotenv').config();
 
+const express = require('express');
 const app = express();
 
-// Middlewares
-app.use(cors());
-app.use(express.json());
-
-// Rotas
-app.use('/api/pedidos', require('./routes/pedidos'));
-app.use('/webhook', require('./routes/webhook'));
-
-// Rota de teste
-app.get('/api/health', (req, res) => {
-    res.json({ status: 'API funcionando!' });
-});
-
+// Agora você pode usar as variáveis
 const PORT = process.env.PORT || 3001;
+const NODE_ENV = process.env.NODE_ENV || 'development';
+
+console.log(`Servidor rodando na porta ${PORT}`);
+console.log(`Ambiente: ${NODE_ENV}`);
+
 app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
+    console.log(`✅ Servidor iniciado na porta ${PORT}`);
 });
