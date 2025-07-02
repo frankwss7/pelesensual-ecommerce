@@ -1,5 +1,6 @@
-// Dados dos produtos da Pele Sensual
+// Dados dos produtos da Pele Sensual - ATUALIZADO COM DORMIR SENSUAL
 export const products = [
+  // Produtos existentes (moda íntima adulto)
   {
     id: "016",
     name: "Calça Microfibra",
@@ -61,7 +62,7 @@ export const products = [
       "/images/tanga_lari_frente_1.png",
       "/images/tanga_lari_costas_1.png"
     ],
-    category: "infantil", // Alterado para infantil
+    category: "infantil",
     description: "Tanga em cotton com design moderno e confortável, perfeita para o dia a dia."
   },
   {
@@ -129,7 +130,7 @@ export const products = [
     sizes: ["P", "M", "G", "GG"],
     retailPrice: 6.50,
     wholesalePrice: 5.00,
-    image: "/images/ana_liz_1010.png", // Imagem adicionada
+    image: "/images/ana_liz_1010.png",
     images: [
       "/images/ana_liz_1010.png"
     ],
@@ -143,7 +144,7 @@ export const products = [
     sizes: ["M", "G", "GG"],
     retailPrice: 8.45,
     wholesalePrice: 6.50,
-    image: "/images/calcola_modal_015.png", // Imagem adicionada
+    image: "/images/calcola_modal_015.png",
     images: [
       "/images/calcola_modal_015.png"
     ],
@@ -157,7 +158,7 @@ export const products = [
     sizes: ["M", "G", "GG"],
     retailPrice: 9.10,
     wholesalePrice: 7.00,
-    image: "/images/pala_microfibra_021.png", // Imagem adicionada
+    image: "/images/pala_microfibra_021.png",
     images: [
       "/images/pala_microfibra_021.png"
     ],
@@ -171,13 +172,15 @@ export const products = [
     sizes: ["M", "G", "GG"],
     retailPrice: 7.80,
     wholesalePrice: 6.00,
-    image: "/images/tangao_020.png", // Imagem adicionada
+    image: "/images/tangao_020.png",
     images: [
       "/images/tangao_020.png"
     ],
     category: "adulto",
     description: "Tangão em microfibra, com design moderno e confortável."
   },
+
+  // Produtos infantis
   {
     id: "002",
     name: "Infantil Trix",
@@ -201,7 +204,7 @@ export const products = [
     sizes: ["P", "M", "G"],
     retailPrice: 5.46,
     wholesalePrice: 4.20,
-    image: "/images/calca_menina_moca_005.png", // Imagem adicionada
+    image: "/images/calca_menina_moca_005.png",
     images: [
       "/images/calca_menina_moca_005.png"
     ],
@@ -223,6 +226,8 @@ export const products = [
     category: "infantil",
     description: "Box feminina infantil em microfibra, com design confortável e divertido."
   },
+
+  // Kits e embalagens
   {
     id: "026",
     name: "Box Feminina Adulto",
@@ -237,7 +242,7 @@ export const products = [
       "/images/box_feminina_detalhe_1.jpg",
       "/images/box_feminina_026.jpg"
     ],
-    category: "adulto", // Alterado para adulto
+    category: "adulto",
     description: "Kit com variedade de calcinhas femininas, perfeito para revenda ou presente."
   },
   {
@@ -247,7 +252,7 @@ export const products = [
     sizes: ["Único"],
     retailPrice: 6.50,
     wholesalePrice: 5.00,
-    image: "/images/embalagens/caixa_embalagem_principal.png", // Imagem atualizada
+    image: "/images/embalagens/caixa_embalagem_principal.png",
     images: [
       "/images/embalagens/caixa_embalagem_principal.png",
       "/images/embalagens/caixa_embalagem_2.png",
@@ -271,15 +276,79 @@ export const products = [
     ],
     category: "kit",
     description: "Bolsa transparente com botão, ideal para até 5 calcinhas."
+  },
+
+  // NOVOS PRODUTOS - DORMIR SENSUAL
+  {
+    id: "DS001",
+    name: "Camisola Sensual Rosa Claro",
+    material: "Microfibra com Renda",
+    sizes: ["P", "M", "G"],
+    retailPrice: 70.00,
+    wholesalePrice: 53.85, // Mantendo a proporção dos outros produtos (aprox. 77%)
+    image: "/images/dormir_sensual/camisola_rosa_claro_frente.png",
+    images: [
+      "/images/dormir_sensual/camisola_rosa_claro_frente.png",
+      "/images/dormir_sensual/camisola_rosa_claro_costas.png"
+    ],
+    category: "dormir_sensual",
+    description: "Camisola sensual em microfibra com detalhes em renda delicada. Design romântico e confortável, perfeita para momentos especiais. Alças finas ajustáveis e caimento fluido que valoriza a silhueta."
+  },
+  {
+    id: "DS002",
+    name: "Baby Doll Rosa Vibrante",
+    material: "Microfibra com Renda",
+    sizes: ["P", "M", "G"],
+    retailPrice: 70.00,
+    wholesalePrice: 53.85,
+    image: "/images/dormir_sensual/baby_doll_rosa_vibrante_frente.png",
+    images: [
+      "/images/dormir_sensual/baby_doll_rosa_vibrante_frente.png",
+      "/images/dormir_sensual/baby_doll_rosa_vibrante_costas.png"
+    ],
+    category: "dormir_sensual",
+    description: "Baby doll em tom rosa vibrante com renda sofisticada no busto e barra. Corte império que proporciona conforto e elegância. Ideal para noites românticas com muito estilo e sensualidade."
+  },
+  {
+    id: "DS003",
+    name: "Conjunto Pijama Rosa",
+    material: "Microfibra com Renda",
+    sizes: ["P", "M", "G"],
+    retailPrice: 70.00,
+    wholesalePrice: 53.85,
+    image: "/images/dormir_sensual/conjunto_pijama_rosa_frente.png",
+    images: [
+      "/images/dormir_sensual/conjunto_pijama_rosa_frente.png",
+      "/images/dormir_sensual/conjunto_pijama_rosa_costas.png"
+    ],
+    category: "dormir_sensual",
+    description: "Conjunto de pijama feminino composto por blusa e short em microfibra macia. Detalhes em renda que conferem delicadeza e feminilidade. Perfeito para dormir com conforto e acordar radiante."
   }
 ];
 
 export const categories = [
-  { id: "adulto", name: "Moda Íntima Adulto", description: "Calcinhas, fios e mais para o seu conforto diário" },
-  { id: "infantil", name: "Moda Íntima Infantil", description: "Peças confortáveis e coloridas para as crianças" },
-  { id: "kit", name: "Kits e Embalagens", description: "Opções especiais para presentes e revenda" }
+  { 
+    id: "adulto", 
+    name: "Moda Íntima Adulto", 
+    description: "Calcinhas, fios e mais para o seu conforto diário" 
+  },
+  { 
+    id: "infantil", 
+    name: "Moda Íntima Infantil", 
+    description: "Peças confortáveis e coloridas para as crianças" 
+  },
+  { 
+    id: "kit", 
+    name: "Kits e Embalagens", 
+    description: "Opções especiais para presentes e revenda" 
+  },
+  // NOVA CATEGORIA
+  { 
+    id: "dormir_sensual", 
+    name: "Dormir Sensual", 
+    description: "Camisolas, baby dolls e pijamas para noites especiais" 
+  }
 ];
 
 export const wholesaleMinQuantity = 200;
 export const wholesalePackageQuantity = 10;
-
