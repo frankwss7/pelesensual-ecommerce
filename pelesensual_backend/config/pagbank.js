@@ -1,6 +1,6 @@
-// Configurações do PagBank
+// As variáveis ficam disponíveis em process.env
 const PAGBANK_CONFIG = {
-    token: process.env.PAGBANK_TOKEN, // Token da sua conta PagBank
+    token: process.env.PAGBANK_TOKEN,
     environment: process.env.NODE_ENV === 'production' ? 'production' : 'sandbox',
     baseUrl: process.env.NODE_ENV === 'production' 
         ? 'https://ws.pagseguro.uol.com.br' 
