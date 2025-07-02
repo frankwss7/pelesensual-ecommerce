@@ -34,7 +34,7 @@ async function createConnection() {
     });
 }
 
-// Model Pedido (igual ao anterior)
+// Model Pedido
 class Pedido {
     static async create(dados) {
         const connection = await createConnection();
