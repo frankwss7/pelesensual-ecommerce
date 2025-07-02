@@ -279,64 +279,68 @@ export const products = [
   },
 
   // NOVOS PRODUTOS - DORMIR SENSUAL
-  export const products = [
   {
-    id: 1,
+    id: "DS001",
     name: "Camisola Lolita",
-    description: "Microfibra com Renda",
-    ref: "DS001",
-    price: 70.00,
-    originalPrice: 53.85,
+    material: "Microfibra com Renda",
     sizes: ["P", "M", "G"],
+    retailPrice: 70.00,
+    wholesalePrice: 53.85,
+    image: "/images/Camisola Lolita.jpg",
     images: [
-      '/images/Camisola Lolita.jpg',
-      '/images/Camisola Lolita costas.jpg'
+      "/images/Camisola Lolita.jpg",
+      "/images/Camisola Lolita costas.jpg"
     ],
-    category: "camisola"
+    category: "dormir_sensual",
+    description: "Camisola Lolita em microfibra com renda, elegante e confortável para noites especiais."
   },
   {
-    id: 2,
+    id: "DS002",
     name: "ShortDoll Elegance",
-    description: "Microfibra com Renda",
-    ref: "DS002", 
-    price: 70.00,
-    originalPrice: 53.85,
+    material: "Microfibra com Renda",
     sizes: ["P", "M", "G"],
+    retailPrice: 70.00,
+    wholesalePrice: 53.85,
+    image: "/images/Shortdoll Elegance.jpg",
     images: [
-      '/images/Shortdoll Elegance.jpg',
-      '/images/ShortDoll Elegance costas.jpg'
+      "/images/Shortdoll Elegance.jpg",
+      "/images/ShortDoll Elegance costas.jpg"
     ],
-    category: "shortdoll"
+    category: "dormir_sensual",
+    description: "ShortDoll Elegance em microfibra com renda, perfeito para momentos íntimos."
   },
   {
-    id: 3,
+    id: "DS003",
     name: "ShortDoll Starjane",
-    description: "Microfibra com Renda", 
-    ref: "DS003",
-    price: 70.00,
-    originalPrice: 53.85,
+    material: "Microfibra com Renda",
     sizes: ["P", "M", "G"],
+    retailPrice: 70.00,
+    wholesalePrice: 53.85,
+    image: "/images/short doll Starjane - Copia.jpg",
     images: [
-      '/images/short doll Starjane - Copia.jpg',
-      '/images/shortdoll starjane frente.jpg'
+      "/images/short doll Starjane - Copia.jpg",
+      "/images/shortdoll starjane frente.jpg"
     ],
-    category: "shortdoll"
+    category: "dormir_sensual",
+    description: "ShortDoll Starjane em microfibra com renda, design moderno e sensual."
   },
   {
-    id: 4,
+    id: "DS004",
     name: "Camisola Elegance",
-    description: "Microfibra com Renda",
-    ref: "DS004",
-    price: 70.00,
-    originalPrice: 53.85,
+    material: "Microfibra com Renda",
     sizes: ["P", "M", "G"],
+    retailPrice: 70.00,
+    wholesalePrice: 53.85,
+    image: "/images/camisola elegance.jpg",
     images: [
-      '/images/camisola elegance.jpg',
-      '/images/camisola elegance costas.jpg'
+      "/images/camisola elegance.jpg",
+      "/images/camisola elegance costas.jpg"
     ],
-    category: "camisola"
+    category: "dormir_sensual",
+    description: "Camisola Elegance em microfibra com renda, sofisticada e confortável."
   }
 ];
+
 export const categories = [
   { 
     id: "adulto", 
@@ -353,7 +357,6 @@ export const categories = [
     name: "Kits e Embalagens", 
     description: "Opções especiais para presentes e revenda" 
   },
-  // NOVA CATEGORIA
   { 
     id: "dormir_sensual", 
     name: "Dormir Sensual", 
