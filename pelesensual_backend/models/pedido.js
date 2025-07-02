@@ -12,7 +12,6 @@ const connection = await mysql.createConnection({
     password: process.env.DB_PASS,  // sua_senha
     database: process.env.DB_NAME   // ecommerce
 });
-        });
         
         try {
             const [result] = await connection.execute(
