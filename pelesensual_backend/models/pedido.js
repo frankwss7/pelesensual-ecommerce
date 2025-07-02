@@ -3,11 +3,15 @@ const mysql = require('mysql2/promise');
 class Pedido {
     
     static async create(dados) {
-        const connection = await mysql.createConnection({
-            host: process.env.DB_HOST,
-            user: process.env.DB_USER,
-            password: process.env.DB_PASS,
-            database: process.env.DB_NAME
+const mysql = require('mysql2/promise');
+
+// Usar as variáveis do .env
+const connection = await mysql.createConnection({
+    host: process.env.DB_HOST,      // localhost
+    user: process.env.DB_USER,      // root
+    password: process.env.DB_PASS,  // sua_senha
+    database: process.env.DB_NAME   // ecommerce
+});
         });
         
         try {
