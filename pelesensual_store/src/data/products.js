@@ -1,368 +1,110 @@
-// Dados dos produtos da Pele Sensual - ATUALIZADO COM DORMIR SENSUAL
+// Dados dos produtos
 export const products = [
-  // Produtos existentes (moda íntima adulto)
   {
-    id: "016",
-    name: "Calça Microfibra",
-    material: "Microfibra",
-    sizes: ["P", "M", "G", "GG"],
-    retailPrice: 6.11,
-    wholesalePrice: 4.70,
-    image: "/images/calca_microfibra_frente_1.png",
-    images: [
-      "/images/calca_microfibra_frente_1.png",
-      "/images/calca_microfibra_costas_1.png",
-      "/images/calca_microfibra_frente_2.png",
-      "/images/calca_microfibra_costas_2.png"
-    ],
-    category: "adulto",
-    description: "Calcinha confeccionada em microfibra de alta qualidade, proporcionando conforto e maciez durante todo o dia."
+    id: 'PS001',
+    name: 'Conjunto Sensual Rosa',
+    category: 'conjunto',
+    material: 'Renda francesa premium',
+    retailPrice: 89.90,
+    wholesalePrice: 45.00,
+    sizes: ['P', 'M', 'G', 'GG'],
+    image: 'https://images.unsplash.com/photo-1594736797933-d0290ba4eeb2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    colors: ['Rosa', 'Preto', 'Branco'],
+    description: 'Conjunto sensual em renda francesa com detalhes delicados e acabamento premium.'
   },
   {
-    id: "012",
-    name: "Calça Modal",
-    material: "Modal",
-    sizes: ["P", "M", "G", "GG"],
-    retailPrice: 6.76,
-    wholesalePrice: 5.20,
-    image: "/images/calcola_modal_frente_1.png",
-    images: [
-      "/images/calcola_modal_frente_1.png",
-      "/images/calcola_modal_costas_1.png"
-    ],
-    category: "adulto",
-    description: "Calcinha em modal, tecido natural e respirável que oferece máximo conforto e durabilidade."
+    id: 'PS002',
+    name: 'Body Elegance Preto',
+    category: 'body',
+    material: 'Lycra premium com renda',
+    retailPrice: 65.90,
+    wholesalePrice: 32.00,
+    sizes: ['P', 'M', 'G', 'GG'],
+    image: 'https://images.unsplash.com/photo-1585652757141-bc1609e2ce32?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    colors: ['Preto', 'Vermelho', 'Nude'],
+    description: 'Body elegante com recortes estratégicos e renda delicada nas laterais.'
   },
   {
-    id: "013",
-    name: "Pala Cotton",
-    material: "Cotton (algodão) Amaciado - Fio 40",
-    sizes: ["P", "M", "G", "GG"],
-    retailPrice: 8.45,
-    wholesalePrice: 6.50,
-    image: "/images/pala_cotton_frente_1.png",
-    images: [
-      "/images/pala_cotton_frente_1.png",
-      "/images/pala_cotton_costas_1.png",
-      "/images/pala_cotton_detalhes.png",
-      "/images/pala_cotton_013.png"
-    ],
-    category: "adulto",
-    description: "Calcinha com pala em cotton amaciado, ideal para o uso diário com máximo conforto e qualidade."
+    id: 'PS003',
+    name: 'Calcinha Rendada Sensual',
+    category: 'calcinha',
+    material: 'Microfibra com renda',
+    retailPrice: 35.90,
+    wholesalePrice: 18.00,
+    sizes: ['P', 'M', 'G', 'GG', 'XGG'],
+    image: 'https://images.unsplash.com/photo-1571513722275-4b41940f54b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    colors: ['Rosa', 'Preto', 'Branco', 'Vermelho'],
+    description: 'Calcinha em microfibra macia com detalhes em renda e elástico confortável.'
   },
   {
-    id: "014",
-    name: "Tanga Lari",
-    material: "Cotton",
-    sizes: ["M", "G", "GG"],
-    retailPrice: 5.85,
-    wholesalePrice: 4.50,
-    image: "/images/tanga_lari_frente_1.png",
-    images: [
-      "/images/tanga_lari_frente_1.png",
-      "/images/tanga_lari_costas_1.png"
-    ],
-    category: "infantil",
-    description: "Tanga em cotton com design moderno e confortável, perfeita para o dia a dia."
+    id: 'PS004',
+    name: 'Sutiã Push-Up Luxo',
+    category: 'sutia',
+    material: 'Microfibra moldada com bojo',
+    retailPrice: 45.90,
+    wholesalePrice: 23.00,
+    sizes: ['36', '38', '40', '42', '44'],
+    image: 'https://images.unsplash.com/photo-1566479179817-4e9166b3ff91?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    colors: ['Nude', 'Preto', 'Branco'],
+    description: 'Sutiã push-up com bojo moldado que realça e sustenta com máximo conforto.'
   },
   {
-    id: "050",
-    name: "Fio Pala Dupla",
-    material: "Microfibra",
-    sizes: ["P", "M", "G", "GG"],
-    retailPrice: 9.10,
-    wholesalePrice: 7.00,
-    image: "/images/fio_pala_dupla_050.png",
-    images: [
-      "/images/fio_pala_dupla_050.png"
-    ],
-    category: "adulto",
-    description: "Fio dental com pala dupla em microfibra, oferecendo conforto e sensualidade."
+    id: 'PS005',
+    name: 'Kit Sexy Weekend',
+    category: 'kit',
+    material: 'Renda e cetim premium',
+    retailPrice: 129.90,
+    wholesalePrice: 65.00,
+    sizes: ['P', 'M', 'G'],
+    image: 'https://images.unsplash.com/photo-1594736797933-d0290ba4eeb2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    colors: ['Vermelho', 'Preto'],
+    description: 'Kit completo com conjunto + camisola + máscara para momentos especiais.'
   },
   {
-    id: "023",
-    name: "Calça Plus",
-    material: "Microfibra",
-    sizes: ["Plus Size"],
-    retailPrice: 10.40,
-    wholesalePrice: 8.00,
-    image: "/images/calca_plus_023.png",
-    images: [
-      "/images/calca_plus_023.png"
-    ],
-    category: "adulto",
-    description: "Calcinha plus size em microfibra, desenvolvida especialmente para maior conforto e ajuste perfeito."
+    id: 'PS006',
+    name: 'Camisola Sedução',
+    category: 'camisola',
+    material: 'Cetim com renda',
+    retailPrice: 55.90,
+    wholesalePrice: 28.00,
+    sizes: ['P', 'M', 'G', 'GG'],
+    image: 'https://images.unsplash.com/photo-1515371264313-a9f142dff4a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    colors: ['Rosa', 'Azul', 'Preto'],
+    description: 'Camisola em cetim macio com detalhes em renda e alças ajustáveis.'
   },
   {
-    id: "052",
-    name: "Fio Largo",
-    material: "Microfibra",
-    sizes: ["M", "G", "GG"],
-    retailPrice: 9.75,
-    wholesalePrice: 7.50,
-    image: "/images/fio_largo_frente_1.png",
-    images: [
-      "/images/fio_largo_frente_1.png",
-      "/images/fio_largo_costas_1.png",
-      "/images/fio_largo_052.png"
-    ],
-    category: "adulto",
-    description: "Fio dental largo em microfibra, combinando conforto e elegância."
+    id: 'PS007',
+    name: 'Conjunto Plus Size Conforto',
+    category: 'conjunto',
+    material: 'Algodão com elastano',
+    retailPrice: 75.90,
+    wholesalePrice: 38.00,
+    sizes: ['GG', 'XGG', 'XXGG'],
+    image: 'https://images.unsplash.com/photo-1594736797933-d0290ba4eeb2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    colors: ['Preto', 'Cinza', 'Azul marinho'],
+    description: 'Conjunto plus size desenvolvido especialmente para conforto e elegância.'
   },
   {
-    id: "1020",
-    name: "Calça Lateral Dupla",
-    material: "Microfibra",
-    sizes: ["P", "M", "G", "GG"],
-    retailPrice: 8.45,
-    wholesalePrice: 6.50,
-    image: "/images/calca_lateral_dupla_1020.png",
-    images: [
-      "/images/calca_lateral_dupla_1020.png"
-    ],
-    category: "adulto",
-    description: "Calcinha com lateral dupla em microfibra, design moderno e confortável."
-  },
-  {
-    id: "1010",
-    name: "ANA LIZ",
-    material: "Microfibra",
-    sizes: ["P", "M", "G", "GG"],
-    retailPrice: 6.50,
-    wholesalePrice: 5.00,
-    image: "/images/ana_liz_1010.png",
-    images: [
-      "/images/ana_liz_1010.png"
-    ],
-    category: "adulto",
-    description: "Calcinha ANA LIZ em microfibra, conforto e leveza para o dia a dia."
-  },
-  {
-    id: "015",
-    name: "Calçola Modal",
-    material: "Modal",
-    sizes: ["M", "G", "GG"],
-    retailPrice: 8.45,
-    wholesalePrice: 6.50,
-    image: "/images/calcola_modal_015.png",
-    images: [
-      "/images/calcola_modal_015.png"
-    ],
-    category: "adulto",
-    description: "Calçola em modal, ideal para quem busca conforto e cobertura."
-  },
-  {
-    id: "021",
-    name: "Pala Microfibra",
-    material: "Poliamida",
-    sizes: ["M", "G", "GG"],
-    retailPrice: 9.10,
-    wholesalePrice: 7.00,
-    image: "/images/pala_microfibra_021.png",
-    images: [
-      "/images/pala_microfibra_021.png"
-    ],
-    category: "adulto",
-    description: "Calcinha com pala em microfibra, proporcionando um ajuste suave e confortável."
-  },
-  {
-    id: "020",
-    name: "Tangão",
-    material: "Microfibra",
-    sizes: ["M", "G", "GG"],
-    retailPrice: 7.80,
-    wholesalePrice: 6.00,
-    image: "/images/tangao_020.png",
-    images: [
-      "/images/tangao_020.png"
-    ],
-    category: "adulto",
-    description: "Tangão em microfibra, com design moderno e confortável."
-  },
-
-  // Produtos infantis
-  {
-    id: "002",
-    name: "Infantil Trix",
-    material: "Modal Poá",
-    sizes: ["P", "M", "G", "GG"],
-    retailPrice: 5.46,
-    wholesalePrice: 4.20,
-    image: "/images/infantil_trix_frente_1.png",
-    images: [
-      "/images/infantil_trix_frente_1.png",
-      "/images/infantil_trix_costas_1.png",
-      "/images/infantil_trix_002.png"
-    ],
-    category: "infantil",
-    description: "Calcinha infantil em modal poá com estampas divertidas e coloridas, ideal para crianças."
-  },
-  {
-    id: "005",
-    name: "Calça Menina Moça",
-    material: "Cotton Amaciado Fio 40",
-    sizes: ["P", "M", "G"],
-    retailPrice: 5.46,
-    wholesalePrice: 4.20,
-    image: "/images/calca_menina_moca_005.png",
-    images: [
-      "/images/calca_menina_moca_005.png"
-    ],
-    category: "infantil",
-    description: "Calça infantil para menina moça em cotton amaciado, confortável e ideal para o dia a dia."
-  },
-  {
-    id: "028",
-    name: "Box Feminina Infantil",
-    material: "Microfibra",
-    sizes: ["M", "G", "GG"],
-    retailPrice: 7.80,
-    wholesalePrice: 6.00,
-    image: "/images/box_feminina_infantil_028_frente.png",
-    images: [
-      "/images/box_feminina_infantil_028_frente.png",
-      "/images/box_feminina_infantil_028_costas.png"
-    ],
-    category: "infantil",
-    description: "Box feminina infantil em microfibra, com design confortável e divertido."
-  },
-
-  // Kits e embalagens
-  {
-    id: "026",
-    name: "Box Feminina Adulto",
-    material: "Variado",
-    sizes: ["Kit"],
-    retailPrice: 9.10,
-    wholesalePrice: 7.00,
-    image: "/images/box_feminina_frente_1.png",
-    images: [
-      "/images/box_feminina_frente_1.png",
-      "/images/box_feminina_costas_1.png",
-      "/images/box_feminina_detalhe_1.jpg",
-      "/images/box_feminina_026.jpg"
-    ],
-    category: "adulto",
-    description: "Kit com variedade de calcinhas femininas, perfeito para revenda ou presente."
-  },
-  {
-    id: "caixa",
-    name: "Caixa de Presente",
-    material: "Papel, seda, adesivo e sacola",
-    sizes: ["Único"],
-    retailPrice: 6.50,
-    wholesalePrice: 5.00,
-    image: "/images/embalagens/caixa_embalagem_principal.png",
-    images: [
-      "/images/embalagens/caixa_embalagem_principal.png",
-      "/images/embalagens/caixa_embalagem_2.png",
-      "/images/embalagens/caixa_embalagem_3.png",
-      "/images/embalagens/caixa_presente_1.png",
-      "/images/embalagens/caixa_presente_aberta.png"
-    ],
-    category: "kit",
-    description: "Caixa de presente completa com papel seda, adesivo e sacola. Ideal para até 5 calcinhas."
-  },
-  {
-    id: "bag_transparente",
-    name: "Bag Transparente",
-    material: "Plástico",
-    sizes: ["Único"],
-    retailPrice: 2.60,
-    wholesalePrice: 2.00,
-    image: "/images/embalagens/embalagem_transparente_1.png",
-    images: [
-      "/images/embalagens/embalagem_transparente_1.png"
-    ],
-    category: "kit",
-    description: "Bolsa transparente com botão, ideal para até 5 calcinhas."
-  },
-
-  // NOVOS PRODUTOS - DORMIR SENSUAL
-  {
-    id: "DS001",
-    name: "Camisola Lolita",
-    material: "Microfibra com Renda",
-    sizes: ["P", "M", "G"],
-    retailPrice: 70.00,
-    wholesalePrice: 53.85,
-    image: "/images/Camisola Lolita.jpg",
-    images: [
-      "/images/Camisola Lolita.jpg",
-      "/images/Camisola Lolita costas.jpg"
-    ],
-    category: "dormir_sensual",
-    description: "Camisola Lolita em microfibra com renda, elegante e confortável para noites especiais."
-  },
-  {
-    id: "DS002",
-    name: "ShortDoll Elegance",
-    material: "Microfibra com Renda",
-    sizes: ["P", "M", "G"],
-    retailPrice: 70.00,
-    wholesalePrice: 53.85,
-    image: "/images/Shortdoll Elegance.jpg",
-    images: [
-      "/images/Shortdoll Elegance.jpg",
-      "/images/ShortDoll Elegance costas.jpg"
-    ],
-    category: "dormir_sensual",
-    description: "ShortDoll Elegance em microfibra com renda, perfeito para momentos íntimos."
-  },
-  {
-    id: "DS003",
-    name: "ShortDoll Starjane",
-    material: "Microfibra com Renda",
-    sizes: ["P", "M", "G"],
-    retailPrice: 70.00,
-    wholesalePrice: 53.85,
-    image: "/images/short doll Starjane - Copia.jpg",
-    images: [
-      "/images/short doll Starjane - Copia.jpg",
-      "/images/shortdoll starjane frente.jpg"
-    ],
-    category: "dormir_sensual",
-    description: "ShortDoll Starjane em microfibra com renda, design moderno e sensual."
-  },
-  {
-    id: "DS004",
-    name: "Camisola Elegance",
-    material: "Microfibra com Renda",
-    sizes: ["P", "M", "G"],
-    retailPrice: 70.00,
-    wholesalePrice: 53.85,
-    image: "/images/camisola elegance.jpg",
-    images: [
-      "/images/camisola elegance.jpg",
-      "/images/camisola elegance costas.jpg"
-    ],
-    category: "dormir_sensual",
-    description: "Camisola Elegance em microfibra com renda, sofisticada e confortável."
+    id: 'PS008',
+    name: 'Lingerie Noiva Branca',
+    category: 'conjunto',
+    material: 'Renda guipir premium',
+    retailPrice: 149.90,
+    wholesalePrice: 75.00,
+    sizes: ['P', 'M', 'G'],
+    image: 'https://images.unsplash.com/photo-1566479179817-4e9166b3ff91?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    colors: ['Branco', 'Off-white'],
+    description: 'Conjunto especial para noivas em renda guipir com detalhes bordados à mão.'
   }
 ];
 
 export const categories = [
-  { 
-    id: "adulto", 
-    name: "Moda Íntima Adulto", 
-    description: "Calcinhas, fios e mais para o seu conforto diário" 
-  },
-  { 
-    id: "infantil", 
-    name: "Moda Íntima Infantil", 
-    description: "Peças confortáveis e coloridas para as crianças" 
-  },
-  { 
-    id: "kit", 
-    name: "Kits e Embalagens", 
-    description: "Opções especiais para presentes e revenda" 
-  },
-  { 
-    id: "dormir_sensual", 
-    name: "Dormir Sensual", 
-    description: "Camisolas, baby dolls e pijamas para noites especiais" 
-  }
+  { id: 'conjunto', name: 'Conjuntos' },
+  { id: 'body', name: 'Bodies' },
+  { id: 'calcinha', name: 'Calcinhas' },
+  { id: 'sutia', name: 'Sutiãs' },
+  { id: 'camisola', name: 'Camisolas' },
+  { id: 'kit', name: 'Kits Especiais' }
 ];
 
-export const wholesaleMinQuantity = 200;
-export const wholesalePackageQuantity = 10;
+export const wholesalePackageQuantity = 6; // Quantidade mínima para atacado
