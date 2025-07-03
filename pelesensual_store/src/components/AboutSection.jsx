@@ -1,134 +1,108 @@
 import React from 'react';
-import { Heart, Award, Truck, Shield, Users, Star } from 'lucide-react';
 
 const AboutSection = () => {
-  const features = [
-    {
-      icon: Heart,
-      title: 'Qualidade Premium',
-      description: 'Tecidos selecionados e acabamento impecável em cada peça'
-    },
-    {
-      icon: Award,
-      title: 'Experiência',
-      description: 'Anos de experiência no mercado de moda íntima feminina'
-    },
-    {
-      icon: Truck,
-      title: 'Entrega Rápida',
-      description: 'Envio rápido e seguro para todo o Brasil'
-    },
-    {
-      icon: Shield,
-      title: 'Compra Segura',
-      description: 'Pagamento seguro via PIX e cartão de crédito'
-    },
-    {
-      icon: Users,
-      title: 'Atendimento',
-      description: 'Suporte personalizado via WhatsApp'
-    },
-    {
-      icon: Star,
-      title: 'Satisfação',
-      description: 'Milhares de clientes satisfeitas em todo o país'
-    }
-  ];
-
   return (
-    <section id="sobre" className="py-20 bg-gradient-to-br from-pink-50 to-purple-50">
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
-            Sobre a Pele Sensual
-          </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            A Pele Sensual é uma marca especializada em moda íntima feminina que combina 
-            conforto, qualidade e elegância. Nosso compromisso é oferecer peças que 
-            valorizam a feminilidade e proporcionam bem-estar no dia a dia.
-          </p>
-        </div>
-
-        {/* Story Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Content */}
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-gray-800">Nossa História</h3>
-            <p className="text-gray-600 leading-relaxed">
-              Fundada com o propósito de democratizar o acesso à moda íntima de qualidade, 
-              a Pele Sensual nasceu da paixão por criar peças que fazem as mulheres se 
-              sentirem confiantes e confortáveis.
-            </p>
-            <p className="text-gray-600 leading-relaxed">
-              Trabalhamos com tecidos cuidadosamente selecionados como microfibra, modal 
-              e cotton amaciado, garantindo durabilidade, maciez e respirabilidade em 
-              cada produto.
-            </p>
-            <p className="text-gray-600 leading-relaxed">
-              Nossa linha inclui desde peças básicas para o dia a dia até modelos mais 
-              elaborados, sempre priorizando o conforto sem abrir mão do estilo.
-            </p>
-          </div>
-          <div className="relative">
-            <img 
-              src="/images/promotional/promo_semana_prospera.png" 
-              alt="Sobre a Pele Sensual"
-              className="rounded-xl shadow-2xl"
-            />
-            <div className="absolute -bottom-6 -right-6 bg-pink-600 text-white p-6 rounded-xl shadow-xl">
-              <p className="text-2xl font-bold">100%</p>
-              <p className="text-sm">Satisfação</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
+              Sobre a Pele Sensual
+            </h2>
+            <div className="space-y-4 text-gray-600 leading-relaxed">
+              <p>
+                Há mais de 10 anos no mercado de moda íntima feminina, a Pele Sensual 
+                se dedica a oferecer produtos de alta qualidade que combinam conforto, 
+                elegância e sensualidade.
+              </p>
+              <p>
+                Nossa missão é fazer com que cada mulher se sinta especial e confiante, 
+                oferecendo peças cuidadosamente selecionadas com os melhores tecidos e 
+                acabamentos do mercado.
+              </p>
+              <p>
+                Trabalhamos tanto no varejo quanto no atacado, atendendo desde clientes 
+                finais até lojistas que confiam na qualidade de nossos produtos para 
+                revender em seus estabelecimentos.
+              </p>
             </div>
-          </div>
-        </div>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => {
-            const IconComponent = feature.icon;
-            return (
-              <div 
-                key={index}
-                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-              >
-                <div className="bg-pink-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                  <IconComponent className="w-8 h-8 text-pink-600" />
+            {/* Features */}
+            <div className="grid sm:grid-cols-2 gap-6 mt-8">
+              <div className="flex items-start space-x-3">
+                <div className="bg-pink-100 p-2 rounded-lg">
+                  <svg className="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-4">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {feature.description}
-                </p>
+                <div>
+                  <h3 className="font-semibold text-gray-800">Qualidade Premium</h3>
+                  <p className="text-sm text-gray-600">Tecidos selecionados e acabamento impecável</p>
+                </div>
               </div>
-            );
-          })}
-        </div>
 
-        {/* Values Section */}
-        <div className="mt-20 text-center">
-          <h3 className="text-2xl font-bold text-gray-800 mb-8">Nossos Valores</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h4 className="text-lg font-semibold text-pink-600 mb-3">Qualidade</h4>
-              <p className="text-gray-600">
-                Compromisso com a excelência em cada detalhe, desde a seleção dos 
-                tecidos até o acabamento final.
-              </p>
+              <div className="flex items-start space-x-3">
+                <div className="bg-pink-100 p-2 rounded-lg">
+                  <svg className="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-800">Conforto Total</h3>
+                  <p className="text-sm text-gray-600">Pensado para o bem-estar da mulher</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-3">
+                <div className="bg-pink-100 p-2 rounded-lg">
+                  <svg className="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-800">Entrega Rápida</h3>
+                  <p className="text-sm text-gray-600">Enviamos para todo o Brasil</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-3">
+                <div className="bg-pink-100 p-2 rounded-lg">
+                  <svg className="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-800">Atendimento Personalizado</h3>
+                  <p className="text-sm text-gray-600">Equipe especializada para te ajudar</p>
+                </div>
+              </div>
             </div>
-            <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h4 className="text-lg font-semibold text-pink-600 mb-3">Conforto</h4>
-              <p className="text-gray-600">
-                Peças desenvolvidas para proporcionar máximo conforto e liberdade 
-                de movimento durante todo o dia.
-              </p>
+          </div>
+
+          {/* Image */}
+          <div className="relative">
+            <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-pink-100 to-purple-100">
+              <img
+                src="https://images.unsplash.com/photo-1594736797933-d0290ba4eeb2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="Sobre a Pele Sensual"
+                className="w-full h-full object-cover"
+              />
             </div>
-            <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h4 className="text-lg font-semibold text-pink-600 mb-3">Elegância</h4>
-              <p className="text-gray-600">
-                Designs modernos e sofisticados que valorizam a feminilidade e 
-                a autoestima de cada mulher.
-              </p>
+            
+            {/* Floating Stats */}
+            <div className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-xl p-6">
+              <div className="flex items-center space-x-4">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-pink-600">10+</div>
+                  <div className="text-sm text-gray-600">Anos</div>
+                </div>
+                <div className="w-px h-12 bg-gray-200"></div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-pink-600">1000+</div>
+                  <div className="text-sm text-gray-600">Clientes</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -138,4 +112,3 @@ const AboutSection = () => {
 };
 
 export default AboutSection;
-
