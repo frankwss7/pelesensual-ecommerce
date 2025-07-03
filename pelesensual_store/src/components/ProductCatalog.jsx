@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Plus, Eye, ShoppingCart } from 'lucide-react';
 import { products, categories as productCategories, wholesalePackageQuantity } from '../data/products';
 import { useCart } from '../contexts/CartContext';
 import ProductModal from './ProductModal';
@@ -93,17 +92,23 @@ const ProductCatalog = () => {
                       alt={product.name}
                       className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                       loading="lazy"
-                      onError={(e) => { e.target.src = '/images/fallback.jpg'; }}
+                      onError={(e) => { 
+                        e.target.src = 'https://images.unsplash.com/photo-1594736797933-d0290ba4eeb2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'; 
+                      }}
                     />
                   </div>
 
-                  {/* Overlay Removido */}
+                  {/* Overlay com botão de visualizar */}
                   <div className="absolute inset-0 bg-transparent transition-all duration-300 flex items-center justify-center">
                     <button
                       onClick={() => setSelectedProduct(product)}
                       className="bg-white text-gray-800 p-3 rounded-full shadow-lg transform scale-0 group-hover:scale-100 transition-all duration-300 hover:bg-pink-50"
+                      aria-label="Ver detalhes"
                     >
-                      <Eye className="w-5 h-5" />
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
                     </button>
                   </div>
 
@@ -163,7 +168,9 @@ const ProductCatalog = () => {
                             onClick={() => handleQuickAdd(product, size)}
                             className="bg-pink-100 text-pink-700 py-2 px-3 rounded-lg text-sm font-medium hover:bg-pink-200 transition-colors flex items-center justify-center gap-1"
                           >
-                            <Plus className="w-3 h-3" />
+                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                            </svg>
                             {size}
                           </button>
                         ))}
@@ -175,7 +182,9 @@ const ProductCatalog = () => {
                       onClick={() => handleAddToCart(product)}
                       className="w-full bg-pink-600 text-white py-3 rounded-lg font-medium hover:bg-pink-700 transition-colors flex items-center justify-center gap-2"
                     >
-                      <ShoppingCart className="w-4 h-4" />
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.12 5H17M13 13v6a2 2 0 01-2 2 2 2 0 01-2-2v-6m4 0V9a2 2 0 00-2-2 2-2 0 00-2 2v4"/>
+                      </svg>
                       Adicionar ao Carrinho
                     </button>
                   </div>
@@ -205,4 +214,3 @@ const ProductCatalog = () => {
 };
 
 export default ProductCatalog;
-
