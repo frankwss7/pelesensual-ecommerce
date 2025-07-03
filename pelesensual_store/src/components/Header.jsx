@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
-import { ShoppingCart, Menu, X, Heart, Truck, Tag, Shield, Instagram, Phone, Mail } from 'lucide-react';
-import { useCart } from '../contexts/CartContext';
-import Cart from './Cart';
+import React, { useState, useContext } from 'react';
+import { CartContext } from '../contexts/CartContext';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const { getTotalItems, pricingMode, setPricingMode, canUseWholesale } = useCart();
+  const { cartItems, toggleCart, isCartOpen } = useContext(CartContext);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const toggleCart = () => setIsCartOpen(!isCartOpen);
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -19,6 +15,126 @@ const Header = () => {
     setIsMenuOpen(false);
   };
 
+  return (
+    <>
+      <header className="header sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+        <div className="header-content container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between w-full">
+            {/* Logo */}
+            <div className="flex items-center">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center">
+                  <span className="text-white font-bold text-lg">PS</span>
+                </div>
+                <div>
+                  <h1 className="text-xl font-bold text-gray-800">Pele Sensual</h1>
+                  <p className="text-sm text-gray-600 hidden sm:block">Conforto, leveza e qualidade</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Navigation Desktop */}
+            <nav className="hidden md:flex items-center space-x-8">
+              <button
+                onClick={() => scrollToSection('home')}
+                className="text-gray-700 hover:text-pink-600 font-medium transition-colors"
+              >
+                Início
+              </button>
+              <button
+                onClick={() => scrollToSection('produtos-adulto')}
+                className="text-gray-700 hover:text-pink-600 font-medium transition-colors"
+              >
+                Produtos
+              </button>
+              <button
+                onClick={() => scrollToSection('sobre')}
+                className="text-gray-700 hover:text-pink-600 font-medium transition-colors"
+              >
+                Sobre
+              </button>
+              <button
+                onClick={() => scrollToSection('contato')}
+                className="text-gray-700 hover:text-pink-600 font-medium transition-colors"
+              >
+                Contato
+              </button>
+            </nav>
+
+            {/* Actions */}
+            <div className="flex items-center space-x-4">
+              {/* Cart Button */}
+              <button
+                onClick={toggleCart}
+                className="cart-button relative flex items-center gap-2 px-4 py-2 border-2 border-pink-500 text-pink-600 rounded-lg font-semibold hover:bg-pink-500 hover:text-white transition-all duration-300"
+                aria-label="Abrir carrinho"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.12 5H17M13 13v6a2 2 0 01-2 2 2 2 0 01-2-2v-6m4 0V9a2 2 0 00-2-2 2-2 0 00-2 2v4"/>
+                </svg>
+                <span className="hidden sm:inline">Carrinho</span>
+                {totalItems > 0 && (
+                  <span className="cart-badge absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center font-bold">
+                    {totalItems}
+                  </span>
+                )}
+              </button>
+
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="md:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+                aria-label="Abrir menu"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {isMenuOpen ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  )}
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Navigation */}
+          {isMenuOpen && (
+            <nav className="md:hidden mt-4 pt-4 border-t border-gray-200">
+              <div className="flex flex-col space-y-3">
+                <button
+                  onClick={() => scrollToSection('home')}
+                  className="text-left text-gray-700 hover:text-pink-600 font-medium py-2 transition-colors"
+                >
+                  Início
+                </button>
+                <button
+                  onClick={() => scrollToSection('produtos-adulto')}
+                  className="text-left text-gray-700 hover:text-pink-600 font-medium py-2 transition-colors"
+                >
+                  Produtos
+                </button>
+                <button
+                  onClick={() => scrollToSection('sobre')}
+                  className="text-left text-gray-700 hover:text-pink-600 font-medium py-2 transition-colors"
+                >
+                  Sobre
+                </button>
+                <button
+                  onClick={() => scrollToSection('contato')}
+                  className="text-left text-gray-700 hover:text-pink-600 font-medium py-2 transition-colors"
+                >
+                  Contato
+                </button>
+              </div>
+            </nav>
+          )}
+        </div>
+      </header>
+    </>
+  );
+};
+
+export default Header;
   return (
     <>
       {/* Top Bar */}
