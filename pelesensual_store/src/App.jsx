@@ -6,6 +6,7 @@ import ProductCatalog from './components/ProductCatalog';
 import AboutSection from './components/AboutSection';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
+import CartSidebar from './components/CartSidebar';
 import './App.css';
 
 function App() {
@@ -14,7 +15,10 @@ function App() {
       <div className="App">
         <Header />
         <main>
-          <HeroBanner />
+          {/* Hero Banner with ID for navigation */}
+          <section id="home">
+            <HeroBanner />
+          </section>
           
           {/* Products Section */}
           <section id="produtos-adulto">
@@ -22,7 +26,9 @@ function App() {
           </section>
           
           {/* About Section */}
-          <AboutSection />
+          <section id="sobre">
+            <AboutSection />
+          </section>
           
           {/* Contact Section */}
           <section id="contato" className="py-20 bg-white">
@@ -94,10 +100,10 @@ function App() {
         
         <Footer />
         <WhatsAppButton />
+        <CartSidebar />
       </div>
     </CartProvider>
   );
 }
 
 export default App;
-
