@@ -1,10 +1,20 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 
 export const CartContext = createContext();
+
+// Hook personalizado para usar o carrinho
+export const useCart = () => {
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error('useCart must be used within a CartProvider');
+  }
+  return context;
+};
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [pricingMode, setPricingMode] = useState('retail'); // retail ou wholesale
 
   // Carregar carrinho do localStorage
   useEffect(() => {
@@ -27,7 +37,7 @@ export const CartProvider = ({ children }) => {
     }
   }, [cartItems]);
 
-  const addToCart = (product, selectedSize) => {
+  const addToCart = (product, selectedSize, quantity = 1) => {
     if (!selectedSize) {
       alert('Por favor, selecione um tamanho');
       return;
@@ -40,17 +50,19 @@ export const CartProvider = ({ children }) => {
     if (existingItemIndex >= 0) {
       // Item já existe, aumentar quantidade
       const updatedItems = [...cartItems];
-      updatedItems[existingItemIndex].quantity += 1;
+      updatedItems[existingItemIndex].quantity += quantity;
       setCartItems(updatedItems);
     } else {
       // Novo item
+      const price = pricingMode === 'wholesale' ? product.wholesalePrice : product.retailPrice;
       const newItem = {
         id: product.id,
         name: product.name,
-        price: product.price,
+        price: price,
         image: product.image,
         size: selectedSize,
-        quantity: 1
+        quantity: quantity,
+        pricingMode: pricingMode
       };
       setCartItems(prev => [...prev, newItem]);
     }
@@ -103,6 +115,8 @@ export const CartProvider = ({ children }) => {
   const value = {
     cartItems,
     isCartOpen,
+    pricingMode,
+    setPricingMode,
     addToCart,
     removeFromCart,
     updateQuantity,
