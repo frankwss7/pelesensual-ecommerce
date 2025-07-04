@@ -12,42 +12,11 @@ export const useCart = () => {
 
 export const CartProvider = ({ children }) => {
   const [items, setItems] = useState([]);
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false); // Sempre começa fechado
   const [pricingMode, setPricingMode] = useState('retail'); // 'retail' ou 'wholesale'
 
-  // Carregar dados do localStorage
-  useEffect(() => {
-    try {
-      const savedCart = localStorage.getItem('pelesensual-cart');
-      const savedPricingMode = localStorage.getItem('pelesensual-pricing-mode');
-      
-      if (savedCart) {
-        setItems(JSON.parse(savedCart));
-      }
-      if (savedPricingMode) {
-        setPricingMode(savedPricingMode);
-      }
-    } catch (error) {
-      console.error('Erro ao carregar dados do localStorage:', error);
-    }
-  }, []);
-
-  // Salvar dados no localStorage
-  useEffect(() => {
-    try {
-      localStorage.setItem('pelesensual-cart', JSON.stringify(items));
-    } catch (error) {
-      console.error('Erro ao salvar carrinho:', error);
-    }
-  }, [items]);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem('pelesensual-pricing-mode', pricingMode);
-    } catch (error) {
-      console.error('Erro ao salvar modo de preços:', error);
-    }
-  }, [pricingMode]);
+  // REMOVIDO: localStorage (não funciona no Vercel)
+  // Agora usa apenas estado em memória durante a sessão
 
   const addToCart = (product, size, quantity = 1) => {
     if (!size) {
@@ -81,7 +50,7 @@ export const CartProvider = ({ children }) => {
       }
     });
 
-    // Abrir carrinho automaticamente
+    // Abrir carrinho automaticamente apenas quando adicionar item
     setIsCartOpen(true);
   };
 
