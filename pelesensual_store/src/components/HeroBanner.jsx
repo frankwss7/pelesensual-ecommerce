@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const HeroBanner = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -34,28 +34,28 @@ const HeroBanner = () => {
     }
   ];
 
-  // Auto-play do carrossel com controle
+  // Auto-play do carrossel
   useEffect(() => {
     if (!isPlaying) return;
     
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 6000); // Aumentado para 6 segundos
+    }, 6000);
 
     return () => clearInterval(timer);
   }, [slides.length, isPlaying]);
 
-  const nextSlide = useCallback(() => {
+  const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
-  }, [slides.length]);
+  };
 
-  const prevSlide = useCallback(() => {
+  const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  }, [slides.length]);
+  };
 
-  const goToSlide = useCallback((index) => {
+  const goToSlide = (index) => {
     setCurrentSlide(index);
-  }, []);
+  };
 
   const togglePlayPause = () => {
     setIsPlaying(!isPlaying);
@@ -68,46 +68,26 @@ const HeroBanner = () => {
     }
   };
 
-  // Keyboard navigation
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === 'ArrowLeft') {
-        prevSlide();
-      } else if (event.key === 'ArrowRight') {
-        nextSlide();
-      } else if (event.key === ' ') {
-        event.preventDefault();
-        togglePlayPause();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [nextSlide, prevSlide]);
-
   return (
-    <section className="hero-section relative w-full h-screen overflow-hidden" role="banner">
+    <section className="hero-section relative w-full h-screen overflow-hidden">
       {/* Container do Carrossel */}
       <div className="relative w-full h-full">
         {slides.map((slide, index) => (
           <div
             key={slide.id}
             className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-              index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-110'
+              index === currentSlide ? 'opacity-100' : 'opacity-0'
             }`}
-            aria-hidden={index !== currentSlide}
           >
-            {/* Imagem de Fundo com lazy loading */}
+            {/* Imagem de Fundo */}
             <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
               style={{
                 backgroundImage: `url(${slide.image})`,
               }}
-              role="img"
-              aria-label={slide.title}
             />
             
-            {/* Overlay escuro responsivo */}
+            {/* Overlay escuro */}
             <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/30" />
             
             {/* Conteúdo do Slide */}
@@ -163,20 +143,20 @@ const HeroBanner = () => {
       {/* Controles de Navegação */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white p-3 rounded-full transition-all duration-300 group backdrop-blur-sm"
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
         aria-label="Slide anterior"
       >
-        <svg className="w-6 h-6 transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
         </svg>
       </button>
 
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white p-3 rounded-full transition-all duration-300 group backdrop-blur-sm"
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
         aria-label="Próximo slide"
       >
-        <svg className="w-6 h-6 transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
         </svg>
       </button>
@@ -198,7 +178,7 @@ const HeroBanner = () => {
         )}
       </button>
 
-      {/* Indicadores de Slide melhorados */}
+      {/* Indicadores de Slide */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
         <div className="flex space-x-3">
           {slides.map((_, index) => (
