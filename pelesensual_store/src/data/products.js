@@ -19,7 +19,7 @@ export const products = [
     colors: ['Branco', 'Preto', 'Nude', 'Rosa'],
     retailPrice: 6.11,
     wholesalePrice: 4.70,
-    image: 'https://images.unsplash.com/photo-1594736797933-d0290ba4eeb2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    image: '/images/calca_microfibra_016.png',
     description: 'Calcinha em microfibra com toque macio e acabamento impecável. Conforto garantido o dia todo.'
   },
   {
@@ -31,7 +31,7 @@ export const products = [
     colors: ['Branco', 'Preto', 'Cinza', 'Rosa'],
     retailPrice: 6.76,
     wholesalePrice: 5.20,
-    image: 'https://images.unsplash.com/photo-1585652757141-bc1609e2ce32?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    image: '/images/calca_modal_012.png',
     description: 'Calcinha em modal, tecido natural, respirável e extremamente confortável.'
   },
   {
@@ -43,7 +43,7 @@ export const products = [
     colors: ['Branco', 'Preto', 'Estampado'],
     retailPrice: 8.45,
     wholesalePrice: 6.50,
-    image: 'https://images.unsplash.com/photo-1571513722275-4b41940f54b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    image: '/images/pala_cotton_013.png',
     description: 'Calcinha com pala frontal em algodão 100%. Ideal para uso diário.'
   },
   {
@@ -55,7 +55,7 @@ export const products = [
     colors: ['Branco', 'Preto', 'Vermelho', 'Rosa'],
     retailPrice: 9.10,
     wholesalePrice: 7.00,
-    image: 'https://images.unsplash.com/photo-1566479179817-4e9166b3ff91?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    image: '/images/fio_pala_dupla_050.png',
     description: 'Fio dental com pala dupla e detalhes em renda. Sensualidade e conforto.'
   },
   {
@@ -67,7 +67,7 @@ export const products = [
     colors: ['Branco', 'Preto', 'Nude'],
     retailPrice: 10.40,
     wholesalePrice: 8.00,
-    image: 'https://images.unsplash.com/photo-1515371264313-a9f142dff4a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    image: '/images/calca_plus_023.png',
     description: 'Calcinha plus size com modelagem especial para maior conforto.'
   },
   {
@@ -79,7 +79,7 @@ export const products = [
     colors: ['Branco', 'Preto', 'Nude', 'Colorido'],
     retailPrice: 9.75,
     wholesalePrice: 7.50,
-    image: 'https://images.unsplash.com/photo-1594736797933-d0290ba4eeb2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    image: '/images/fio_largo_052.png',
     description: 'Fio dental com lateral mais larga para maior conforto.'
   },
   {
@@ -91,7 +91,7 @@ export const products = [
     colors: ['Branco', 'Preto', 'Rosa', 'Azul'],
     retailPrice: 8.45,
     wholesalePrice: 6.50,
-    image: 'https://images.unsplash.com/photo-1585652757141-bc1609e2ce32?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    image: '/images/calca_lateral_dupla_1020.png',
     description: 'Calcinha com lateral dupla para melhor sustentação e conforto.'
   },
   {
@@ -103,7 +103,7 @@ export const products = [
     colors: ['Variadas'],
     retailPrice: 7.80,
     wholesalePrice: 6.00,
-    image: 'https://images.unsplash.com/photo-1571513722275-4b41940f54b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    image: '/images/calÔö£┬║a modal.png',
     description: 'Linha ANA LIZ com design exclusivo e qualidade superior.'
   },
   {
@@ -115,7 +115,7 @@ export const products = [
     colors: ['Branco', 'Preto', 'Nude'],
     retailPrice: 6.76,
     wholesalePrice: 5.20,
-    image: 'https://images.unsplash.com/photo-1566479179817-4e9166b3ff91?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    image: '/images/calcola_modal_frente_1.png',
     description: 'Calçola em modal com cobertura completa e conforto excepcional.'
   },
   {
@@ -127,7 +127,7 @@ export const products = [
     colors: ['Branco', 'Preto', 'Colorido'],
     retailPrice: 7.80,
     wholesalePrice: 6.00,
-    image: 'https://images.unsplash.com/photo-1515371264313-a9f142dff4a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    image: '/images/pala_cotton_frente_1.png',
     description: 'Calcinha com pala em microfibra. Tecnologia e conforto.'
   },
 
@@ -141,7 +141,7 @@ export const products = [
     colors: ['Branco', 'Rosa', 'Estampado'],
     retailPrice: 5.85,
     wholesalePrice: 4.50,
-    image: 'https://images.unsplash.com/photo-1621452773781-0f992fd1f5cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    image: '/images/infantil_trix_002.png',
     description: 'Calcinha infantil em algodão macio, ideal para o dia a dia.'
   },
   {
@@ -153,7 +153,7 @@ export const products = [
     colors: ['Branco', 'Rosa', 'Lilás'],
     retailPrice: 5.85,
     wholesalePrice: 4.50,
-    image: 'https://images.unsplash.com/photo-1621452773781-0f992fd1f5cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    image: '/images/infantil_trix_frente_1.png',
     description: 'Calcinha para pré-adolescentes com design delicado.'
   },
   {
@@ -165,7 +165,7 @@ export const products = [
     colors: ['Rosa', 'Branco', 'Estampado'],
     retailPrice: 7.80,
     wholesalePrice: 6.00,
-    image: 'https://images.unsplash.com/photo-1621452773781-0f992fd1f5cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    image: '/images/tanga_lari_frente_1.png',
     description: 'Tanga infantil com design jovem e materiais seguros.'
   },
 
@@ -179,7 +179,7 @@ export const products = [
     colors: ['Variadas'],
     retailPrice: 32.50,
     wholesalePrice: 25.00,
-    image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    image: '/images/box_feminina/box_feminina_frente_1.png',
     description: 'Kit com 5 calcinhas adulto sortidas em tamanhos e cores variados.'
   },
   {
@@ -191,7 +191,7 @@ export const products = [
     colors: ['Variadas'],
     retailPrice: 23.40,
     wholesalePrice: 18.00,
-    image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    image: '/images/box_feminina_026.jpg',
     description: 'Kit com 4 calcinhas infantil sortidas em tamanhos e cores variados.'
   },
   {
@@ -203,7 +203,7 @@ export const products = [
     colors: ['Rosa', 'Branco'],
     retailPrice: 2.60,
     wholesalePrice: 2.00,
-    image: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    image: '/images/embalagens/caixa_presente_1.png',
     description: 'Caixa de presente elegante para embalar suas compras.'
   },
   {
@@ -215,7 +215,7 @@ export const products = [
     colors: ['Transparente'],
     retailPrice: 1.30,
     wholesalePrice: 1.00,
-    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+    image: '/images/embalagens/embalagem_transparente_1.png',
     description: 'Embalagem transparente prática para transporte e armazenamento.'
   }
 ];
