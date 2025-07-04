@@ -1,79 +1,93 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
-export const CartContext = createContext();
+const CartContext = createContext();
 
-// Hook personalizado para usar o carrinho
 export const useCart = () => {
   const context = useContext(CartContext);
   if (!context) {
-    throw new Error('useCart must be used within a CartProvider');
+    throw new Error('useCart deve ser usado dentro de CartProvider');
   }
   return context;
 };
 
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+  const [items, setItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [pricingMode, setPricingMode] = useState('retail'); // retail ou wholesale
+  const [pricingMode, setPricingMode] = useState('retail'); // 'retail' ou 'wholesale'
 
-  // Carregar carrinho do localStorage
+  // Carregar dados do localStorage
   useEffect(() => {
     try {
       const savedCart = localStorage.getItem('pelesensual-cart');
+      const savedPricingMode = localStorage.getItem('pelesensual-pricing-mode');
+      
       if (savedCart) {
-        setCartItems(JSON.parse(savedCart));
+        setItems(JSON.parse(savedCart));
+      }
+      if (savedPricingMode) {
+        setPricingMode(savedPricingMode);
       }
     } catch (error) {
-      console.error('Erro ao carregar carrinho:', error);
+      console.error('Erro ao carregar dados do localStorage:', error);
     }
   }, []);
 
-  // Salvar carrinho no localStorage
+  // Salvar dados no localStorage
   useEffect(() => {
     try {
-      localStorage.setItem('pelesensual-cart', JSON.stringify(cartItems));
+      localStorage.setItem('pelesensual-cart', JSON.stringify(items));
     } catch (error) {
       console.error('Erro ao salvar carrinho:', error);
     }
-  }, [cartItems]);
+  }, [items]);
 
-  const addToCart = (product, selectedSize, quantity = 1) => {
-    if (!selectedSize) {
+  useEffect(() => {
+    try {
+      localStorage.setItem('pelesensual-pricing-mode', pricingMode);
+    } catch (error) {
+      console.error('Erro ao salvar modo de preços:', error);
+    }
+  }, [pricingMode]);
+
+  const addToCart = (product, size, quantity = 1) => {
+    if (!size) {
       alert('Por favor, selecione um tamanho');
       return;
     }
 
-    const existingItemIndex = cartItems.findIndex(
-      item => item.id === product.id && item.size === selectedSize
-    );
+    setItems(prevItems => {
+      const existingItemIndex = prevItems.findIndex(
+        item => item.id === product.id && item.size === size
+      );
 
-    if (existingItemIndex >= 0) {
-      // Item já existe, aumentar quantidade
-      const updatedItems = [...cartItems];
-      updatedItems[existingItemIndex].quantity += quantity;
-      setCartItems(updatedItems);
-    } else {
-      // Novo item
-      const price = pricingMode === 'wholesale' ? product.wholesalePrice : product.retailPrice;
-      const newItem = {
-        id: product.id,
-        name: product.name,
-        price: price,
-        image: product.image,
-        size: selectedSize,
-        quantity: quantity,
-        pricingMode: pricingMode
-      };
-      setCartItems(prev => [...prev, newItem]);
-    }
+      if (existingItemIndex >= 0) {
+        // Item já existe, atualizar quantidade
+        const updatedItems = [...prevItems];
+        updatedItems[existingItemIndex].quantity += quantity;
+        return updatedItems;
+      } else {
+        // Novo item
+        const newItem = {
+          id: product.id,
+          name: product.name,
+          retailPrice: product.retailPrice,
+          wholesalePrice: product.wholesalePrice,
+          image: product.image,
+          material: product.material,
+          size: size,
+          quantity: quantity
+        };
+        return [...prevItems, newItem];
+      }
+    });
 
     // Abrir carrinho automaticamente
     setIsCartOpen(true);
   };
 
   const removeFromCart = (productId, size) => {
-    setCartItems(prev => 
-      prev.filter(item => !(item.id === productId && item.size === size))
+    setItems(prevItems => 
+      prevItems.filter(item => !(item.id === productId && item.size === size))
     );
   };
 
@@ -83,8 +97,13 @@ export const CartProvider = ({ children }) => {
       return;
     }
 
-    setCartItems(prev =>
-      prev.map(item =>
+    // Para atacado, mínimo de 10 unidades por incremento
+    if (pricingMode === 'wholesale' && newQuantity % 10 !== 0) {
+      newQuantity = Math.ceil(newQuantity / 10) * 10;
+    }
+
+    setItems(prevItems =>
+      prevItems.map(item =>
         item.id === productId && item.size === size
           ? { ...item, quantity: newQuantity }
           : item
@@ -93,38 +112,58 @@ export const CartProvider = ({ children }) => {
   };
 
   const clearCart = () => {
-    setCartItems([]);
+    setItems([]);
   };
 
   const getTotalPrice = () => {
-    return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+    return items.reduce((total, item) => {
+      const price = pricingMode === 'wholesale' ? item.wholesalePrice : item.retailPrice;
+      return total + (price * item.quantity);
+    }, 0);
   };
 
-  const getTotalItems = () => {
-    return cartItems.reduce((total, item) => total + item.quantity, 0);
+  const getTotalQuantity = () => {
+    return items.reduce((total, item) => total + item.quantity, 0);
+  };
+
+  const canUseWholesale = () => {
+    return getTotalQuantity() >= 200;
   };
 
   const toggleCart = () => {
     setIsCartOpen(prev => !prev);
   };
 
+  const openCart = () => {
+    setIsCartOpen(true);
+  };
+
   const closeCart = () => {
     setIsCartOpen(false);
   };
 
+  // Auto-switch para atacado quando atingir quantidade mínima
+  useEffect(() => {
+    if (pricingMode === 'retail' && canUseWholesale()) {
+      setPricingMode('wholesale');
+    }
+  }, [items, pricingMode]);
+
   const value = {
-    cartItems,
+    items,
     isCartOpen,
     pricingMode,
-    setPricingMode,
     addToCart,
     removeFromCart,
     updateQuantity,
     clearCart,
     getTotalPrice,
-    getTotalItems,
+    getTotalQuantity,
+    canUseWholesale,
     toggleCart,
-    closeCart
+    openCart,
+    closeCart,
+    setPricingMode
   };
 
   return (
