@@ -5,134 +5,157 @@ const CartContext = createContext();
 export const useCart = () => {
   const context = useContext(CartContext);
   if (!context) {
-    throw new Error('useCart deve ser usado dentro de CartProvider');
+    throw new Error('useCart must be used within a CartProvider');
   }
   return context;
 };
 
 export const CartProvider = ({ children }) => {
-  const [items, setItems] = useState([]);
-  const [isCartOpen, setIsCartOpen] = useState(false); // Sempre começa fechado
-  const [pricingMode, setPricingMode] = useState('retail'); // 'retail' ou 'wholesale'
+  const [isCartOpen, setIsCartOpen] = useState(false); // CORRIGIDO: inicia fechado
+  const [cartItems, setCartItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // REMOVIDO: localStorage (não funciona no Vercel)
-  // Agora usa apenas estado em memória durante a sessão
-
-  const addToCart = (product, size, quantity = 1) => {
-    if (!size) {
-      alert('Por favor, selecione um tamanho');
-      return;
-    }
-
-    setItems(prevItems => {
-      const existingItemIndex = prevItems.findIndex(
-        item => item.id === product.id && item.size === size
-      );
-
-      if (existingItemIndex >= 0) {
-        // Item já existe, atualizar quantidade
-        const updatedItems = [...prevItems];
-        updatedItems[existingItemIndex].quantity += quantity;
-        return updatedItems;
-      } else {
-        // Novo item
-        const newItem = {
-          id: product.id,
-          name: product.name,
-          retailPrice: product.retailPrice,
-          wholesalePrice: product.wholesalePrice,
-          image: product.image,
-          material: product.material,
-          size: size,
-          quantity: quantity
-        };
-        return [...prevItems, newItem];
+  // Carregar carrinho do localStorage (se existir)
+  useEffect(() => {
+    try {
+      const savedCart = localStorage.getItem('pelesensual_cart');
+      if (savedCart) {
+        const parsedCart = JSON.parse(savedCart);
+        setCartItems(parsedCart);
       }
-    });
+    } catch (error) {
+      console.error('Erro ao carregar carrinho:', error);
+    }
+  }, []);
 
-    // Abrir carrinho automaticamente apenas quando adicionar item
-    setIsCartOpen(true);
+  // Salvar carrinho no localStorage sempre que mudar
+  useEffect(() => {
+    try {
+      localStorage.setItem('pelesensual_cart', JSON.stringify(cartItems));
+    } catch (error) {
+      console.error('Erro ao salvar carrinho:', error);
+    }
+  }, [cartItems]);
+
+  // Adicionar item ao carrinho
+  const addToCart = (product, selectedSize = 'M', quantity = 1) => {
+    setIsLoading(true);
+    
+    try {
+      const itemId = `${product.id}-${selectedSize}`;
+      
+      setCartItems(currentItems => {
+        const existingItem = currentItems.find(item => item.id === itemId);
+        
+        if (existingItem) {
+          // Se já existe, aumenta a quantidade
+          return currentItems.map(item =>
+            item.id === itemId
+              ? { ...item, quantity: item.quantity + quantity }
+              : item
+          );
+        } else {
+          // Se não existe, adiciona novo item
+          return [...currentItems, {
+            id: itemId,
+            productId: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            size: selectedSize,
+            quantity: quantity
+          }];
+        }
+      });
+      
+      // Feedback visual (opcional)
+      setIsCartOpen(true);
+      
+    } catch (error) {
+      console.error('Erro ao adicionar produto:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const removeFromCart = (productId, size) => {
-    setItems(prevItems => 
-      prevItems.filter(item => !(item.id === productId && item.size === size))
+  // Remover item do carrinho
+  const removeFromCart = (itemId) => {
+    setCartItems(currentItems => 
+      currentItems.filter(item => item.id !== itemId)
     );
   };
 
-  const updateQuantity = (productId, size, newQuantity) => {
+  // Atualizar quantidade
+  const updateQuantity = (itemId, newQuantity) => {
     if (newQuantity <= 0) {
-      removeFromCart(productId, size);
+      removeFromCart(itemId);
       return;
     }
 
-    // Para atacado, mínimo de 10 unidades por incremento
-    if (pricingMode === 'wholesale' && newQuantity % 10 !== 0) {
-      newQuantity = Math.ceil(newQuantity / 10) * 10;
-    }
-
-    setItems(prevItems =>
-      prevItems.map(item =>
-        item.id === productId && item.size === size
+    setCartItems(currentItems =>
+      currentItems.map(item =>
+        item.id === itemId
           ? { ...item, quantity: newQuantity }
           : item
       )
     );
   };
 
+  // Limpar carrinho
   const clearCart = () => {
-    setItems([]);
+    setCartItems([]);
+    setIsCartOpen(false);
   };
 
-  const getTotalPrice = () => {
-    return items.reduce((total, item) => {
-      const price = pricingMode === 'wholesale' ? item.wholesalePrice : item.retailPrice;
-      return total + (price * item.quantity);
-    }, 0);
-  };
-
-  const getTotalQuantity = () => {
-    return items.reduce((total, item) => total + item.quantity, 0);
-  };
-
-  const canUseWholesale = () => {
-    return getTotalQuantity() >= 200;
-  };
-
+  // Abrir/fechar carrinho
   const toggleCart = () => {
     setIsCartOpen(prev => !prev);
   };
 
-  const openCart = () => {
-    setIsCartOpen(true);
-  };
+  const openCart = () => setIsCartOpen(true);
+  const closeCart = () => setIsCartOpen(false);
 
-  const closeCart = () => {
-    setIsCartOpen(false);
-  };
+  // Calcular totais
+  const cartItemsCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+  const cartTotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
 
-  // Auto-switch para atacado quando atingir quantidade mínima
-  useEffect(() => {
-    if (pricingMode === 'retail' && canUseWholesale()) {
-      setPricingMode('wholesale');
-    }
-  }, [items, pricingMode]);
+  // Função para gerar mensagem do WhatsApp
+  const generateWhatsAppMessage = () => {
+    if (cartItems.length === 0) return '';
+
+    let message = '🛍️ *Pedido - Pele Sensual*\n\n';
+    
+    cartItems.forEach((item, index) => {
+      message += `${index + 1}. ${item.name}\n`;
+      message += `   Tamanho: ${item.size}\n`;
+      message += `   Quantidade: ${item.quantity}\n`;
+      message += `   Preço: R$ ${item.price.toFixed(2)}\n`;
+      message += `   Subtotal: R$ ${(item.price * item.quantity).toFixed(2)}\n\n`;
+    });
+
+    message += `💰 *Total: R$ ${cartTotal.toFixed(2)}*\n\n`;
+    message += 'Gostaria de finalizar este pedido! 😊';
+
+    return encodeURIComponent(message);
+  };
 
   const value = {
-    items,
+    // Estado
     isCartOpen,
-    pricingMode,
+    cartItems,
+    cartItemsCount,
+    cartTotal,
+    isLoading,
+
+    // Ações
     addToCart,
     removeFromCart,
     updateQuantity,
     clearCart,
-    getTotalPrice,
-    getTotalQuantity,
-    canUseWholesale,
     toggleCart,
     openCart,
     closeCart,
-    setPricingMode
+    generateWhatsAppMessage
   };
 
   return (
