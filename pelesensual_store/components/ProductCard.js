@@ -5,12 +5,14 @@ const ProductCard = ({ product }) => {
   const [imageError, setImageError] = useState({});
 
   const nextImage = () => {
+    const images = Array.isArray(product.images) ? product.images : [product.image];
     setCurrentImageIndex((prev) => 
       prev === images.length - 1 ? 0 : prev + 1
     );
   };
 
   const prevImage = () => {
+    const images = Array.isArray(product.images) ? product.images : [product.image];
     setCurrentImageIndex((prev) => 
       prev === 0 ? images.length - 1 : prev - 1
     );
@@ -27,6 +29,9 @@ const ProductCard = ({ product }) => {
   const images = Array.isArray(product.images) ? product.images : [product.image];
   const currentImage = images[currentImageIndex];
 
+  // Fallback para imagem padrão se a imagem não carregar
+  const fallbackImage = 'https://images.unsplash.com/photo-1594736797933-d0290ba4eeb2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80';
+
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
       <div className="relative aspect-[3/4] bg-gray-100">
@@ -37,15 +42,24 @@ const ProductCard = ({ product }) => {
             className="w-full h-full object-cover"
             onError={() => handleImageError(currentImageIndex)}
             loading="lazy"
+            onLoad={(e) => {
+              // Se a imagem carregar, remove o erro
+              if (imageError[currentImageIndex]) {
+                setImageError(prev => ({
+                  ...prev,
+                  [currentImageIndex]: false
+                }));
+              }
+            }}
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gray-200">
-            <div className="text-center text-gray-500">
-              <div className="text-4xl mb-2">📷</div>
-              <div className="text-sm font-medium">Imagem Indisponível</div>
-              <div className="text-xs">{product.name}</div>
-            </div>
-          </div>
+          // Fallback image
+          <img
+            src={fallbackImage}
+            alt={product.name}
+            className="w-full h-full object-cover opacity-75"
+            loading="lazy"
+          />
         )}
         
         {images.length > 1 && (
@@ -80,6 +94,13 @@ const ProductCard = ({ product }) => {
               ))}
             </div>
           </>
+        )}
+        
+        {/* Badge para indicar se está usando fallback */}
+        {imageError[currentImageIndex] && (
+          <div className="absolute top-2 right-2 bg-yellow-500 text-white text-xs px-2 py-1 rounded">
+            Imagem indisponível
+          </div>
         )}
       </div>
       
