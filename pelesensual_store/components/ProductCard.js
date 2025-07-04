@@ -6,13 +6,13 @@ const ProductCard = ({ product }) => {
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => 
-      prev === product.images.length - 1 ? 0 : prev + 1
+      prev === images.length - 1 ? 0 : prev + 1
     );
   };
 
   const prevImage = () => {
     setCurrentImageIndex((prev) => 
-      prev === 0 ? product.images.length - 1 : prev - 1
+      prev === 0 ? images.length - 1 : prev - 1
     );
   };
 
@@ -23,7 +23,9 @@ const ProductCard = ({ product }) => {
     }));
   };
 
-  const currentImage = product.images[currentImageIndex];
+  // Adaptar para imagem única ou array de imagens
+  const images = Array.isArray(product.images) ? product.images : [product.image];
+  const currentImage = images[currentImageIndex];
 
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
@@ -46,7 +48,7 @@ const ProductCard = ({ product }) => {
           </div>
         )}
         
-        {product.images.length > 1 && (
+        {images.length > 1 && (
           <>
             <button 
               className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white w-8 h-8 rounded-full flex items-center justify-center transition-colors"
@@ -64,7 +66,7 @@ const ProductCard = ({ product }) => {
             </button>
             
             <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1">
-              {product.images.map((_, index) => (
+              {images.map((_, index) => (
                 <button
                   key={index}
                   className={`w-2 h-2 rounded-full transition-colors ${
@@ -84,7 +86,7 @@ const ProductCard = ({ product }) => {
       <div className="p-4">
         <h3 className="font-semibold text-lg text-gray-800 mb-2">{product.name}</h3>
         <p className="text-gray-600 text-sm mb-2">{product.description}</p>
-        <p className="text-xs text-gray-500 mb-3">REF: {product.ref}</p>
+        <p className="text-xs text-gray-500 mb-3">ID: {product.id}</p>
         
         <div className="mb-4">
           <span className="text-sm font-medium text-gray-700 block mb-2">Tamanhos disponíveis:</span>
@@ -99,10 +101,10 @@ const ProductCard = ({ product }) => {
         
         <div className="mb-4">
           <div className="text-lg font-bold text-pink-600">
-            R$ {product.price.toFixed(2)}
+            R$ {product.retailPrice.toFixed(2)}
           </div>
           <div className="text-sm text-gray-500">
-            Atacado: R$ {product.originalPrice.toFixed(2)}
+            Atacado: R$ {product.wholesalePrice.toFixed(2)}
           </div>
         </div>
         
