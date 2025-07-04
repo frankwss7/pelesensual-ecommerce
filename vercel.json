@@ -3,13 +3,18 @@
   "builds": [
     {
       "src": "pelesensual_store/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
+      "use": "@vercel/static-build"
+    },
+    {
+      "src": "api/*.py",
+      "use": "@vercel/python"
     }
   ],
   "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
     {
       "src": "/(.*)",
       "dest": "/pelesensual_store/dist/index.html"
