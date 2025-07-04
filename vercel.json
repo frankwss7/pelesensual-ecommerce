@@ -1,16 +1,15 @@
 {
   "version": 2,
   "framework": "vite",
-  "buildCommand": "cd pelesensual_store && npm run build",
-  "installCommand": "cd pelesensual_store && npm install",
-  "outputDirectory": "pelesensual_store/dist",
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
+  "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
-  "routes": [
+  "rewrites": [
     {
-      "src": "/[^.]+",
-      "dest": "/",
-      "status": 200
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
