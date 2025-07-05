@@ -1,171 +1,137 @@
-import React, { createContext, useContext, useState } from 'react';
+import React from 'react';
 
-const CartContext = createContext();
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
 
-export const useCart = () => {
-  const context = useContext(CartContext);import React, { createContext, useContext, useState, useEffect } from 'react';
-
-const CartContext = createContext();
-
-export const useCart = () => {
-  const context = useContext(CartContext);
-  if (!context) {
-    throw new Error('useCart must be used within a CartProvider');
-  }
-  return context;
-};
-
-export const CartProvider = ({ children }) => {
-  const [isCartOpen, setIsCartOpen] = useState(false); // CORRIGIDO: inicia fechado
-  const [cartItems, setCartItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  // Carregar carrinho do localStorage (se existir)
-  useEffect(() => {
-    try {
-      const savedCart = localStorage.getItem('pelesensual_cart');
-      if (savedCart) {
-        const parsedCart = JSON.parse(savedCart);
-        setCartItems(parsedCart);
-      }
-    } catch (error) {
-      console.error('Erro ao carregar carrinho:', error);
-    }
-  }, []);
-
-  // Salvar carrinho no localStorage sempre que mudar
-  useEffect(() => {
-    try {
-      localStorage.setItem('pelesensual_cart', JSON.stringify(cartItems));
-    } catch (error) {
-      console.error('Erro ao salvar carrinho:', error);
-    }
-  }, [cartItems]);
-
-  // Adicionar item ao carrinho
-  const addToCart = (product, selectedSize = 'M', quantity = 1) => {
-    setIsLoading(true);
-    
-    try {
-      const itemId = `${product.id}-${selectedSize}`;
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId.replace('#', ''));
+    if (element) {
+      const headerHeight = 80;
+      const elementPosition = element.offsetTop - headerHeight;
       
-      setCartItems(currentItems => {
-        const existingItem = currentItems.find(item => item.id === itemId);
-        
-        if (existingItem) {
-          // Se já existe, aumenta a quantidade
-          return currentItems.map(item =>
-            item.id === itemId
-              ? { ...item, quantity: item.quantity + quantity }
-              : item
-          );
-        } else {
-          // Se não existe, adiciona novo item
-          return [...currentItems, {
-            id: itemId,
-            productId: product.id,
-            name: product.name,
-            price: product.price,
-            image: product.image,
-            size: selectedSize,
-            quantity: quantity
-          }];
-        }
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
       });
-      
-      // Feedback visual (opcional)
-      setIsCartOpen(true);
-      
-    } catch (error) {
-      console.error('Erro ao adicionar produto:', error);
-    } finally {
-      setIsLoading(false);
     }
-  };
-
-  // Remover item do carrinho
-  const removeFromCart = (itemId) => {
-    setCartItems(currentItems => 
-      currentItems.filter(item => item.id !== itemId)
-    );
-  };
-
-  // Atualizar quantidade
-  const updateQuantity = (itemId, newQuantity) => {
-    if (newQuantity <= 0) {
-      removeFromCart(itemId);
-      return;
-    }
-
-    setCartItems(currentItems =>
-      currentItems.map(item =>
-        item.id === itemId
-          ? { ...item, quantity: newQuantity }
-          : item
-      )
-    );
-  };
-
-  // Limpar carrinho
-  const clearCart = () => {
-    setCartItems([]);
-    setIsCartOpen(false);
-  };
-
-  // Abrir/fechar carrinho
-  const toggleCart = () => {
-    setIsCartOpen(prev => !prev);
-  };
-
-  const openCart = () => setIsCartOpen(true);
-  const closeCart = () => setIsCartOpen(false);
-
-  // Calcular totais
-  const cartItemsCount = cartItems.reduce((total, item) => total + item.quantity, 0);
-  const cartTotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
-
-  // Função para gerar mensagem do WhatsApp
-  const generateWhatsAppMessage = () => {
-    if (cartItems.length === 0) return '';
-
-    let message = '🛍️ *Pedido - Pele Sensual*\n\n';
-    
-    cartItems.forEach((item, index) => {
-      message += `${index + 1}. ${item.name}\n`;
-      message += `   Tamanho: ${item.size}\n`;
-      message += `   Quantidade: ${item.quantity}\n`;
-      message += `   Preço: R$ ${item.price.toFixed(2)}\n`;
-      message += `   Subtotal: R$ ${(item.price * item.quantity).toFixed(2)}\n\n`;
-    });
-
-    message += `💰 *Total: R$ ${cartTotal.toFixed(2)}*\n\n`;
-    message += 'Gostaria de finalizar este pedido! 😊';
-
-    return encodeURIComponent(message);
-  };
-
-  const value = {
-    // Estado
-    isCartOpen,
-    cartItems,
-    cartItemsCount,
-    cartTotal,
-    isLoading,
-
-    // Ações
-    addToCart,
-    removeFromCart,
-    updateQuantity,
-    clearCart,
-    toggleCart,
-    openCart,
-    closeCart,
-    generateWhatsAppMessage
   };
 
   return (
-    <CartContext.Provider value={value}>
-      {children}
-    </CartContext.Provider>
+    <footer className="bg-gray-900 text-white py-12">
+      <div className="container mx-auto px-4">
+        <div className="footer-content grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Seção da empresa */}
+          <div className="footer-section">
+            <h3 className="text-xl font-bold mb-4">Pele Sensual</h3>
+            <p className="text-gray-300 mb-4">
+              Moda íntima com conforto, leveza e qualidade.
+            </p>
+            
+            <div className="space-y-2 mb-6">
+              <p className="flex items-center text-gray-300">
+                <i className="fas fa-phone mr-3 text-pink-400"></i>
+                (85) 99943-6548
+              </p>
+              <p className="flex items-center text-gray-300">
+                <i className="fas fa-envelope mr-3 text-pink-400"></i>
+                pelesensualmodaintima@gmail.com
+              </p>
+            </div>
+            
+            <div className="social-links flex space-x-4">
+              <a 
+                href="https://www.instagram.com/pelesensual?igsh=bXU3a2Z6NmVwbzhz" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors duration-300"
+              >
+                <i className="fab fa-instagram"></i>
+              </a>
+              <a 
+                href="https://wa.me/5585999436548" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center hover:bg-green-700 transition-colors duration-300"
+              >
+                <i className="fab fa-whatsapp"></i>
+              </a>
+            </div>
+          </div>
+
+          {/* Seção de categorias */}
+          <div className="footer-section">
+            <h3 className="text-xl font-bold mb-4">Categorias</h3>
+            <ul className="space-y-2">
+              <li>
+                <button
+                  onClick={() => scrollToSection('#produtos-adulto')}
+                  className="text-gray-300 hover:text-pink-400 transition-colors duration-300"
+                >
+                  Moda Íntima Adulto
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection('#produtos-infantil')}
+                  className="text-gray-300 hover:text-pink-400 transition-colors duration-300"
+                >
+                  Moda Íntima Infantil
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection('#embalagens')}
+                  className="text-gray-300 hover:text-pink-400 transition-colors duration-300"
+                >
+                  Embalagens e Kits
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Seção de informações */}
+          <div className="footer-section">
+            <h3 className="text-xl font-bold mb-4">Informações</h3>
+            <ul className="space-y-2">
+              <li>
+                <button
+                  onClick={() => scrollToSection('#sobre')}
+                  className="text-gray-300 hover:text-pink-400 transition-colors duration-300"
+                >
+                  Sobre Nós
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection('#contato')}
+                  className="text-gray-300 hover:text-pink-400 transition-colors duration-300"
+                >
+                  Contato
+                </button>
+              </li>
+              <li>
+                <a href="#" className="text-gray-300 hover:text-pink-400 transition-colors duration-300">
+                  Política de Privacidade
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-300 hover:text-pink-400 transition-colors duration-300">
+                  Termos e Condições
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Copyright */}
+        <div className="copyright border-t border-gray-700 mt-8 pt-8 text-center">
+          <p className="text-gray-400">
+            &copy; {currentYear} Pele Sensual Moda Íntima. Todos os direitos reservados.
+          </p>
+        </div>
+      </div>
+    </footer>
   );
 };
+
+export default Footer;
