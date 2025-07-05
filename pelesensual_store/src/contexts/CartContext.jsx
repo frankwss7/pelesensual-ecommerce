@@ -8,7 +8,6 @@ export const useCart = () => {
 const CartContext = createContext();
 
 export const useCart = () => {
-  const context = useContext(CartContext);
   if (!context) {
     throw new Error('useCart must be used within a CartProvider');
   }
@@ -19,28 +18,6 @@ export const CartProvider = ({ children }) => {
   const [isCartOpen, setIsCartOpen] = useState(false); // CORRIGIDO: inicia fechado
   const [cartItems, setCartItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  // Carregar carrinho do localStorage (se existir)
-  useEffect(() => {
-    try {
-      const savedCart = localStorage.getItem('pelesensual_cart');
-      if (savedCart) {
-        const parsedCart = JSON.parse(savedCart);
-        setCartItems(parsedCart);
-      }
-    } catch (error) {
-      console.error('Erro ao carregar carrinho:', error);
-    }
-  }, []);
-
-  // Salvar carrinho no localStorage sempre que mudar
-  useEffect(() => {
-    try {
-      localStorage.setItem('pelesensual_cart', JSON.stringify(cartItems));
-    } catch (error) {
-      console.error('Erro ao salvar carrinho:', error);
-    }
-  }, [cartItems]);
 
   // Adicionar item ao carrinho
   const addToCart = (product, selectedSize = 'M', quantity = 1) => {
