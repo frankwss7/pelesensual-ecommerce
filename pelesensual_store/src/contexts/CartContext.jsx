@@ -3,11 +3,7 @@ import React, { createContext, useContext, useState } from 'react';
 const CartContext = createContext();
 
 export const useCart = () => {
-  const context = useContext(CartContext);import React, { createContext, useContext, useState, useEffect } from 'react';
-
-const CartContext = createContext();
-
-export const useCart = () => {
+  const context = useContext(CartContext);
   if (!context) {
     throw new Error('useCart must be used within a CartProvider');
   }
@@ -15,7 +11,7 @@ export const useCart = () => {
 };
 
 export const CartProvider = ({ children }) => {
-  const [isCartOpen, setIsCartOpen] = useState(false); // CORRIGIDO: inicia fechado
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -30,14 +26,12 @@ export const CartProvider = ({ children }) => {
         const existingItem = currentItems.find(item => item.id === itemId);
         
         if (existingItem) {
-          // Se já existe, aumenta a quantidade
           return currentItems.map(item =>
             item.id === itemId
               ? { ...item, quantity: item.quantity + quantity }
               : item
           );
         } else {
-          // Se não existe, adiciona novo item
           return [...currentItems, {
             id: itemId,
             productId: product.id,
@@ -50,7 +44,6 @@ export const CartProvider = ({ children }) => {
         }
       });
       
-      // Feedback visual (opcional)
       setIsCartOpen(true);
       
     } catch (error) {
@@ -122,14 +115,11 @@ export const CartProvider = ({ children }) => {
   };
 
   const value = {
-    // Estado
     isCartOpen,
     cartItems,
     cartItemsCount,
     cartTotal,
     isLoading,
-
-    // Ações
     addToCart,
     removeFromCart,
     updateQuantity,
