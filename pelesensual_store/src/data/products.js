@@ -1,237 +1,210 @@
-// Dados dos produtos da Pele Sensual
+// src/data/products.js - Arquivo atualizado com os produtos de roupa de dormir
+
+// Configurações gerais
+export const wholesalePackageQuantity = 12;
+
+// Categorias de produtos
 export const categories = [
-  { id: 'adult', name: 'Moda Íntima Adulto' },
-  { id: 'infantil', name: 'Moda Íntima Infantil' },
-  { id: 'kit', name: 'Kits e Embalagens' }
+  { id: 'calcinha', name: 'Calcinhas' },
+  { id: 'fio_dental', name: 'Fio Dental' },
+  { id: 'sleepwear', name: 'Roupa de Dormir' }, // Nova categoria
+  { id: 'kit', name: 'Kits' }
 ];
 
-export const wholesalePackageQuantity = 10; // Incremento mínimo para atacado
-export const wholesaleMinimumQuantity = 200; // Quantidade mínima total para atacado
-
+// Lista completa de produtos
 export const products = [
-  // === MODA ÍNTIMA ADULTO ===
+  // Produtos existentes (calcinhas)
   {
-    id: 'CAL001',
+    id: '016',
     name: 'Calça Microfibra',
-    category: 'adult',
-    material: 'Microfibra Premium',
+    material: 'Tecido: Microfibra',
+    category: 'calcinha',
     sizes: ['P', 'M', 'G', 'GG'],
-    colors: ['Branco', 'Preto', 'Nude', 'Rosa'],
-    retailPrice: 6.11,
-    wholesalePrice: 4.70,
-    image: '/images/calca_microfibra_016.png',
-    description: 'Calcinha em microfibra com toque macio e acabamento impecável. Conforto garantido o dia todo.'
+    colors: ['Variadas'],
+    retailPrice: 4.70,
+    wholesalePrice: 4.20,
+    image: 'calca_microfibra_frente_1.png',
+    description: 'Calcinha confortável em microfibra de alta qualidade.'
   },
   {
-    id: 'CAL002',
+    id: '012',
     name: 'Calça Modal',
-    category: 'adult',
-    material: 'Modal',
+    material: 'Tecido: Modal',
+    category: 'calcinha',
     sizes: ['P', 'M', 'G', 'GG'],
-    colors: ['Branco', 'Preto', 'Cinza', 'Rosa'],
-    retailPrice: 6.76,
-    wholesalePrice: 5.20,
-    image: '/images/calca_modal_012.png',
-    description: 'Calcinha em modal, tecido natural, respirável e extremamente confortável.'
+    colors: ['Variadas'],
+    retailPrice: 5.20,
+    wholesalePrice: 4.70,
+    image: 'calcola_modal_frente_1.png',
+    description: 'Calcinha em modal, extremamente macia e confortável.'
   },
   {
-    id: 'PAL001',
+    id: '013',
     name: 'Pala Cotton',
-    category: 'adult',
-    material: 'Algodão Premium',
-    sizes: ['P', 'M', 'G', 'GG'],
-    colors: ['Branco', 'Preto', 'Estampado'],
-    retailPrice: 8.45,
-    wholesalePrice: 6.50,
-    image: '/images/pala_cotton_013.png',
-    description: 'Calcinha com pala frontal em algodão 100%. Ideal para uso diário.'
-  },
-  {
-    id: 'FIO001',
-    name: 'Fio Pala Dupla',
-    category: 'adult',
-    material: 'Microfibra com Renda',
-    sizes: ['P', 'M', 'G', 'GG'],
-    colors: ['Branco', 'Preto', 'Vermelho', 'Rosa'],
-    retailPrice: 9.10,
-    wholesalePrice: 7.00,
-    image: '/images/fio_pala_dupla_050.png',
-    description: 'Fio dental com pala dupla e detalhes em renda. Sensualidade e conforto.'
-  },
-  {
-    id: 'CAL003',
-    name: 'Calça Plus',
-    category: 'adult',
-    material: 'Poliamida Elastano',
-    sizes: ['GG', 'XGG', 'XXGG'],
-    colors: ['Branco', 'Preto', 'Nude'],
-    retailPrice: 10.40,
-    wholesalePrice: 8.00,
-    image: '/images/calca_plus_023.png',
-    description: 'Calcinha plus size com modelagem especial para maior conforto.'
-  },
-  {
-    id: 'FIO002',
-    name: 'Fio Largo',
-    category: 'adult',
-    material: 'Microfibra Premium',
-    sizes: ['P', 'M', 'G', 'GG'],
-    colors: ['Branco', 'Preto', 'Nude', 'Colorido'],
-    retailPrice: 9.75,
-    wholesalePrice: 7.50,
-    image: '/images/fio_largo_052.png',
-    description: 'Fio dental com lateral mais larga para maior conforto.'
-  },
-  {
-    id: 'CAL004',
-    name: 'Calça Lateral Dupla',
-    category: 'adult',
-    material: 'Microfibra',
-    sizes: ['P', 'M', 'G', 'GG'],
-    colors: ['Branco', 'Preto', 'Rosa', 'Azul'],
-    retailPrice: 8.45,
-    wholesalePrice: 6.50,
-    image: '/images/calca_lateral_dupla_1020.png',
-    description: 'Calcinha com lateral dupla para melhor sustentação e conforto.'
-  },
-  {
-    id: 'ANA001',
-    name: 'ANA LIZ',
-    category: 'adult',
-    material: 'Poliamida com Elastano',
+    material: 'Tecido: Cotton (algodão) Amaciado - Fio 40',
+    category: 'calcinha',
     sizes: ['P', 'M', 'G', 'GG'],
     colors: ['Variadas'],
-    retailPrice: 7.80,
+    retailPrice: 6.50,
     wholesalePrice: 6.00,
-    image: '/images/calÔö£┬║a modal.png',
-    description: 'Linha ANA LIZ com design exclusivo e qualidade superior.'
+    image: 'pala_cotton_frente_1.png',
+    description: 'Calcinha em cotton amaciado, ideal para uso diário.'
   },
   {
-    id: 'CAL005',
-    name: 'Calçola Modal',
-    category: 'adult',
-    material: 'Modal Premium',
-    sizes: ['P', 'M', 'G', 'GG'],
-    colors: ['Branco', 'Preto', 'Nude'],
-    retailPrice: 6.76,
-    wholesalePrice: 5.20,
-    image: '/images/calcola_modal_frente_1.png',
-    description: 'Calçola em modal com cobertura completa e conforto excepcional.'
-  },
-  {
-    id: 'PAL002',
-    name: 'Pala Microfibra',
-    category: 'adult',
-    material: 'Microfibra Premium',
-    sizes: ['P', 'M', 'G', 'GG'],
-    colors: ['Branco', 'Preto', 'Colorido'],
-    retailPrice: 7.80,
-    wholesalePrice: 6.00,
-    image: '/images/pala_cotton_frente_1.png',
-    description: 'Calcinha com pala em microfibra. Tecnologia e conforto.'
-  },
-
-  // === MODA ÍNTIMA INFANTIL ===
-  {
-    id: 'INF001',
-    name: 'Infantil Trix',
-    category: 'infantil',
-    material: 'Algodão',
-    sizes: ['2', '4', '6', '8', '10', '12'],
-    colors: ['Branco', 'Rosa', 'Estampado'],
-    retailPrice: 5.85,
-    wholesalePrice: 4.50,
-    image: '/images/infantil_trix_002.png',
-    description: 'Calcinha infantil em algodão macio, ideal para o dia a dia.'
-  },
-  {
-    id: 'INF002',
-    name: 'Calça Menina Moça',
-    category: 'infantil',
-    material: 'Algodão Premium',
-    sizes: ['8', '10', '12', '14'],
-    colors: ['Branco', 'Rosa', 'Lilás'],
-    retailPrice: 5.85,
-    wholesalePrice: 4.50,
-    image: '/images/infantil_trix_frente_1.png',
-    description: 'Calcinha para pré-adolescentes com design delicado.'
-  },
-  {
-    id: 'INF003',
+    id: '014',
     name: 'Tanga Lari',
-    category: 'infantil',
-    material: 'Microfibra Infantil',
-    sizes: ['10', '12', '14'],
-    colors: ['Rosa', 'Branco', 'Estampado'],
-    retailPrice: 7.80,
+    material: 'Tecido: Cotton',
+    category: 'calcinha',
+    sizes: ['M', 'G', 'GG'],
+    colors: ['Variadas'],
+    retailPrice: 6.00,
+    wholesalePrice: 5.50,
+    image: 'tanga_lari_frente_1.png',
+    description: 'Tanga em cotton, design moderno e confortável.'
+  },
+  {
+    id: '050',
+    name: 'Fio Pala Dupla',
+    material: 'Tecido: Microfibra',
+    category: 'fio_dental',
+    sizes: ['P', 'M', 'G', 'GG'],
+    colors: ['Variadas'],
+    retailPrice: 7.00,
+    wholesalePrice: 6.50,
+    image: 'fio_pala_dupla_050.png',
+    description: 'Fio dental com pala dupla em microfibra.'
+  },
+  {
+    id: '023',
+    name: 'Calça Plus',
+    material: 'Tecido: Microfibra',
+    category: 'calcinha',
+    sizes: ['Plus Size'],
+    colors: ['Variadas'],
+    retailPrice: 8.00,
+    wholesalePrice: 7.50,
+    image: 'calca_plus_023.png',
+    description: 'Calcinha plus size em microfibra, conforto garantido.'
+  },
+  {
+    id: '052',
+    name: 'Fio Largo',
+    material: 'Tecido: Microfibra',
+    category: 'fio_dental',
+    sizes: ['M', 'G', 'GG'],
+    colors: ['Variadas'],
+    retailPrice: 7.50,
+    wholesalePrice: 7.00,
+    image: 'fio_largo_frente_1.png',
+    description: 'Fio dental modelo largo em microfibra.'
+  },
+  {
+    id: '1020',
+    name: 'Calça Lateral Dupla',
+    material: 'Tecido: Microfibra',
+    category: 'calcinha',
+    sizes: ['P', 'M', 'G', 'GG'],
+    colors: ['Variadas'],
+    retailPrice: 6.50,
     wholesalePrice: 6.00,
-    image: '/images/tanga_lari_frente_1.png',
-    description: 'Tanga infantil com design jovem e materiais seguros.'
+    image: 'calca_lateral_dupla_1020.png',
+    description: 'Calcinha com lateral dupla em microfibra.'
+  },
+  {
+    id: '026',
+    name: 'Box Feminina',
+    material: 'Tecido: Microfibra',
+    category: 'calcinha',
+    sizes: ['P', 'M', 'G', 'GG'],
+    colors: ['Cores Sortidas'],
+    retailPrice: 7.00,
+    wholesalePrice: 6.50,
+    image: 'box_feminina/box_feminina_frente_1.png',
+    description: 'Box feminina em microfibra, cores sortidas.'
   },
 
-  // === KITS E EMBALAGENS ===
+  // NOVOS PRODUTOS DE ROUPA DE DORMIR
   {
-    id: 'KIT001',
-    name: 'Box Feminina Adulto',
-    category: 'kit',
-    material: 'Kit Sortido',
-    sizes: ['Sortido'],
-    colors: ['Variadas'],
-    retailPrice: 32.50,
-    wholesalePrice: 25.00,
-    image: '/images/box_feminina/box_feminina_frente_1.png',
-    description: 'Kit com 5 calcinhas adulto sortidas em tamanhos e cores variados.'
-  },
-  {
-    id: 'KIT002',
-    name: 'Box Feminina Infantil',
-    category: 'kit',
-    material: 'Kit Sortido',
-    sizes: ['Sortido'],
-    colors: ['Variadas'],
-    retailPrice: 23.40,
-    wholesalePrice: 18.00,
-    image: '/images/box_feminina_026.jpg',
-    description: 'Kit com 4 calcinhas infantil sortidas em tamanhos e cores variados.'
-  },
-  {
-    id: 'EMB001',
-    name: 'Caixa de Presente',
-    category: 'kit',
-    material: 'Papelão Premium',
-    sizes: ['Único'],
-    colors: ['Rosa', 'Branco'],
-    retailPrice: 2.60,
-    wholesalePrice: 2.00,
-    image: '/images/embalagens/caixa_presente_1.png',
-    description: 'Caixa de presente elegante para embalar suas compras.'
-  },
-  {
-    id: 'EMB002',
-    name: 'Bag Transparente',
-    category: 'kit',
-    material: 'Plástico Transparente',
+    id: 'baby_doll_rosa_1',
+    name: 'Baby Doll Rosa com Renda',
+    material: 'Tecido: Microfibra com Renda',
+    category: 'sleepwear',
     sizes: ['P', 'M', 'G'],
-    colors: ['Transparente'],
-    retailPrice: 1.30,
-    wholesalePrice: 1.00,
-    image: '/images/embalagens/embalagem_transparente_1.png',
-    description: 'Embalagem transparente prática para transporte e armazenamento.'
+    colors: ['Rosa'],
+    retailPrice: 70.00,
+    wholesalePrice: 65.00,
+    image: 'sleepwear/baby_doll_rosa_1.jpg',
+    description: 'Elegante baby doll em rosa com detalhes em renda delicada. Perfeito para momentos especiais.'
+  },
+  {
+    id: 'baby_doll_rosa_2',
+    name: 'Baby Doll Rosa com Shortinho',
+    material: 'Tecido: Microfibra com Renda',
+    category: 'sleepwear',
+    sizes: ['P', 'M', 'G'],
+    colors: ['Rosa'],
+    retailPrice: 70.00,
+    wholesalePrice: 65.00,
+    image: 'sleepwear/baby_doll_rosa_2.jpg',
+    description: 'Baby doll rosa com shortinho combinando, design sensual e confortável.'
+  },
+  {
+    id: 'baby_doll_pink_1',
+    name: 'Baby Doll Pink Premium',
+    material: 'Tecido: Microfibra Premium com Renda',
+    category: 'sleepwear',
+    sizes: ['P', 'M', 'G'],
+    colors: ['Pink'],
+    retailPrice: 70.00,
+    wholesalePrice: 65.00,
+    image: 'sleepwear/baby_doll_pink_1.jpg',
+    description: 'Baby doll em pink vibrante com acabamentos em renda premium.'
+  },
+  {
+    id: 'baby_doll_pink_2',
+    name: 'Baby Doll Pink com Detalhes',
+    material: 'Tecido: Microfibra Premium',
+    category: 'sleepwear',
+    sizes: ['P', 'M', 'G'],
+    colors: ['Pink'],
+    retailPrice: 70.00,
+    wholesalePrice: 65.00,
+    image: 'sleepwear/baby_doll_pink_2.jpg',
+    description: 'Baby doll pink com detalhes especiais em renda e alças ajustáveis.'
+  },
+  {
+    id: 'camisola_preta_1',
+    name: 'Camisola Preta Elegante',
+    material: 'Tecido: Microfibra com Renda',
+    category: 'sleepwear',
+    sizes: ['P', 'M', 'G'],
+    colors: ['Preto'],
+    retailPrice: 70.00,
+    wholesalePrice: 65.00,
+    image: 'sleepwear/camisola_preta_1.jpg',
+    description: 'Camisola preta sofisticada com renda decorativa e design elegante.'
+  },
+  {
+    id: 'camisola_preta_2',
+    name: 'Camisola Preta Clássica',
+    material: 'Tecido: Microfibra com Renda',
+    category: 'sleepwear',
+    sizes: ['P', 'M', 'G'],
+    colors: ['Preto'],
+    retailPrice: 70.00,
+    wholesalePrice: 65.00,
+    image: 'sleepwear/camisola_preta_2.jpg',
+    description: 'Camisola preta clássica com detalhes em renda na parte superior e inferior.'
   }
 ];
 
-// Função para obter produtos por categoria
-export const getProductsByCategory = (categoryId) => {
-  if (categoryId === 'all') return products;
-  return products.filter(product => product.category === categoryId);
+// Função para buscar produtos por categoria
+export const getProductsByCategory = (category) => {
+  if (category === 'all') return products;
+  return products.filter(product => product.category === category);
 };
 
-// Função para obter produto por ID
-export const getProductById = (productId) => {
-  return products.find(product => product.id === productId);
-};
-
-// Função para calcular preço com base no modo
-export const getProductPrice = (product, mode = 'retail') => {
-  return mode === 'wholesale' ? product.wholesalePrice : product.retailPrice;
+// Função para buscar produto por ID
+export const getProductById = (id) => {
+  return products.find(product => product.id === id);
 };
