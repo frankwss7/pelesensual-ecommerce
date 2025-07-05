@@ -49,6 +49,7 @@ const useCart = () => useContext(CartContext);
 function App() {
   const [currentMode, setCurrentMode] = useState('retail');
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState('all');
   const { cartItemsCount, toggleCart, isCartOpen, cartItems, cartTotal, closeCart, addToCart } = useCart();
 
   // Auto-slide do banner
@@ -59,7 +60,7 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
-  // Produtos exatos do site original
+  // Produtos exatos do site original + novos produtos de roupa de dormir
   const adultProducts = [
     {
       id: '016',
@@ -68,6 +69,7 @@ function App() {
       sizes: 'Tamanhos: P, M, G, GG',
       price: 4.70,
       ref: 'REF: 016',
+      category: 'calcinha',
       image: 'images/calca_microfibra_frente_1.png'
     },
     {
@@ -77,6 +79,7 @@ function App() {
       sizes: 'Tamanhos: P, M, G, GG',
       price: 5.20,
       ref: 'REF: 012',
+      category: 'calcinha',
       image: 'images/calcola_modal_frente_1.png'
     },
     {
@@ -86,6 +89,7 @@ function App() {
       sizes: 'Tamanhos: P, M, G, GG',
       price: 6.50,
       ref: 'REF: 013',
+      category: 'calcinha',
       image: 'images/pala_cotton_frente_1.png'
     },
     {
@@ -95,6 +99,7 @@ function App() {
       sizes: 'Tamanhos: M, G, GG',
       price: 6.00,
       ref: 'REF: 014',
+      category: 'calcinha',
       image: 'images/tanga_lari_frente_1.png'
     },
     {
@@ -104,6 +109,7 @@ function App() {
       sizes: 'Tamanhos: P, M, G, GG',
       price: 7.00,
       ref: 'REF: 050',
+      category: 'fio_dental',
       image: 'images/fio_pala_dupla_050.png'
     },
     {
@@ -113,6 +119,7 @@ function App() {
       sizes: 'Tamanhos: Plus Size',
       price: 8.00,
       ref: 'REF: 023',
+      category: 'calcinha',
       image: 'images/calca_plus_023.png'
     },
     {
@@ -122,6 +129,7 @@ function App() {
       sizes: 'Tamanhos: M, G, GG',
       price: 7.50,
       ref: 'REF: 052',
+      category: 'fio_dental',
       image: 'images/fio_largo_frente_1.png'
     },
     {
@@ -131,6 +139,7 @@ function App() {
       sizes: 'Tamanhos: P, M, G, GG',
       price: 6.50,
       ref: 'REF: 1020',
+      category: 'calcinha',
       image: 'images/calca_lateral_dupla_1020.png'
     },
     {
@@ -140,9 +149,85 @@ function App() {
       sizes: 'Tamanhos: P, M, G, GG',
       price: 7.00,
       ref: 'REF: 026 * Cores Sortidas',
+      category: 'calcinha',
       image: 'images/box_feminina/box_feminina_frente_1.png'
     }
   ];
+
+  // NOVOS PRODUTOS DE ROUPA DE DORMIR
+  const sleepwearProducts = [
+    {
+      id: 'baby_doll_rosa_1',
+      name: 'Baby Doll Rosa com Renda',
+      material: 'Tecido: Microfibra com Renda',
+      sizes: 'Tamanhos: P, M, G',
+      price: 70.00,
+      ref: 'REF: BD001',
+      category: 'sleepwear',
+      image: 'images/sleepwear/baby_doll_rosa_1.jpg'
+    },
+    {
+      id: 'baby_doll_rosa_2',
+      name: 'Baby Doll Rosa com Shortinho',
+      material: 'Tecido: Microfibra com Renda',
+      sizes: 'Tamanhos: P, M, G',
+      price: 70.00,
+      ref: 'REF: BD002',
+      category: 'sleepwear',
+      image: 'images/sleepwear/baby_doll_rosa_2.jpg'
+    },
+    {
+      id: 'baby_doll_pink_1',
+      name: 'Baby Doll Pink Premium',
+      material: 'Tecido: Microfibra Premium com Renda',
+      sizes: 'Tamanhos: P, M, G',
+      price: 70.00,
+      ref: 'REF: BD003',
+      category: 'sleepwear',
+      image: 'images/sleepwear/baby_doll_pink_1.jpg'
+    },
+    {
+      id: 'baby_doll_pink_2',
+      name: 'Baby Doll Pink com Detalhes',
+      material: 'Tecido: Microfibra Premium',
+      sizes: 'Tamanhos: P, M, G',
+      price: 70.00,
+      ref: 'REF: BD004',
+      category: 'sleepwear',
+      image: 'images/sleepwear/baby_doll_pink_2.jpg'
+    },
+    {
+      id: 'camisola_preta_1',
+      name: 'Camisola Preta Elegante',
+      material: 'Tecido: Microfibra com Renda',
+      sizes: 'Tamanhos: P, M, G',
+      price: 70.00,
+      ref: 'REF: CM001',
+      category: 'sleepwear',
+      image: 'images/sleepwear/camisola_preta_1.jpg'
+    },
+    {
+      id: 'camisola_preta_2',
+      name: 'Camisola Preta Clássica',
+      material: 'Tecido: Microfibra com Renda',
+      sizes: 'Tamanhos: P, M, G',
+      price: 70.00,
+      ref: 'REF: CM002',
+      category: 'sleepwear',
+      image: 'images/sleepwear/camisola_preta_2.jpg'
+    }
+  ];
+
+  // Combinar todos os produtos
+  const allProducts = [...adultProducts, ...sleepwearProducts];
+
+  // Filtrar produtos por categoria
+  const getFilteredProducts = () => {
+    if (selectedCategory === 'all') return allProducts;
+    return allProducts.filter(product => product.category === selectedCategory);
+  };
+
+  const filteredProducts = getFilteredProducts();
 
   return (
     <div>
@@ -176,6 +261,12 @@ function App() {
         nav a { text-decoration: none; color: #333; font-weight: 500; transition: color 0.3s; }
         nav a:hover { color: #ec4899; }
         
+        /* Category Filter */
+        .category-filter { display: flex; justify-content: center; gap: 15px; margin: 30px 0; flex-wrap: wrap; }
+        .category-btn { background: white; border: 2px solid #e5e7eb; color: #6b7280; padding: 10px 20px; border-radius: 25px; cursor: pointer; transition: all 0.3s; font-weight: 500; }
+        .category-btn.active { background: #ec4899; border-color: #ec4899; color: white; }
+        .category-btn:hover { border-color: #ec4899; color: #ec4899; }
+        
         /* Banner */
         .banner-container { position: relative; height: 500px; margin-top: 120px; overflow: hidden; }
         .banner-slide { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1s; display: flex; align-items: center; justify-content: center; }
@@ -206,9 +297,10 @@ function App() {
         /* Products */
         .products { padding: 80px 0; }
         .products:nth-child(even) { background: #f8fafc; }
-        .products h2 { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: #333; font-weight: 700; }
+        .products h2 { text-align: center; font-size: 2.5rem; margin-bottom: 1rem; color: #333; font-weight: 700; }
+        .products .subtitle { text-align: center; font-size: 1.1rem; color: #666; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto; }
         .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .product-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .product-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s; position: relative; }
         .product-card:hover { transform: translateY(-5px); }
         .product-card img { width: 100%; height: 250px; object-fit: cover; }
         .product-card .content { padding: 25px; }
@@ -222,6 +314,8 @@ function App() {
         .btn:hover { background: #be185d; }
         .btn-sm { padding: 8px 16px; font-size: 0.9rem; }
         .actions .btn { flex: 1; text-align: center; }
+        .category-badge { position: absolute; top: 10px; right: 10px; background: #ec4899; color: white; padding: 4px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 500; }
+        .sleepwear-badge { background: #9333ea; }
         
         /* Cart */
         .cart { position: fixed; top: 0; right: -400px; width: 400px; height: 100vh; background: white; box-shadow: -5px 0 15px rgba(0,0,0,0.1); transition: right 0.3s; z-index: 2000; padding: 0; overflow-y: auto; }
@@ -248,279 +342,7 @@ function App() {
           .header-icons { display: none; }
           nav ul { display: none; }
           .cart { width: 100%; right: -100%; }
+          .category-filter { gap: 10px; }
+          .category-btn { padding: 8px 15px; font-size: 0.9rem; }
         }
       `}</style>
-
-      {/* Mode Toggle */}
-      <div className="mode-toggle-container">
-        <div className="mode-toggle">
-          <button 
-            className={currentMode === 'retail' ? 'active' : ''}
-            onClick={() => setCurrentMode('retail')}
-          >
-            Varejo
-          </button>
-          <button 
-            className={currentMode === 'wholesale' ? 'active' : ''}
-            onClick={() => setCurrentMode('wholesale')}
-          >
-            Atacado
-          </button>
-        </div>
-      </div>
-
-      {/* Header */}
-      <header className="header-decoration">
-        <div className="header-pattern"></div>
-        <div className="container">
-          <div className="header-icons">
-            <div className="header-icon">
-              <i className="fas fa-heart"></i>
-              <span>Qualidade Premium</span>
-            </div>
-            <div className="header-icon">
-              <i className="fas fa-truck"></i>
-              <span>Entrega Rápida</span>
-            </div>
-            <div className="header-icon">
-              <i className="fas fa-tag"></i>
-              <span>Melhores Preços</span>
-            </div>
-            <div className="header-icon">
-              <i className="fas fa-shield-alt"></i>
-              <span>Compra Segura</span>
-            </div>
-          </div>
-          <div className="header-content">
-            <div className="logo">
-              <img src="images/logos/PS-Logo_01.png" alt="Pele Sensual Moda Íntima" className="main-logo" />
-            </div>
-            <div className="slogan">Conforto, leveza e qualidade</div>
-            <nav>
-              <ul>
-                <li><a href="#home">Início</a></li>
-                <li><a href="#produtos">Produtos</a></li>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#contato">Contato</a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
-
-      {/* Banner */}
-      <div className="banner-container" id="home">
-        <div className={`banner-slide ${currentSlide === 0 ? 'active' : ''}`} 
-             style={{backgroundImage: "url('images/banner/banner_img1.png')"}}>
-          <div className="banner-content">
-            <h2>Conforto e Elegância em Cada Peça</h2>
-            <p>Descubra nossa coleção de moda íntima feminina com tecidos de alta qualidade e designs modernos.</p>
-            <a href="#produtos" className="banner-btn">Ver Produtos</a>
-          </div>
-        </div>
-        <div className={`banner-slide ${currentSlide === 1 ? 'active' : ''}`} 
-             style={{backgroundImage: "url('images/banner/banner_img2.png')"}}>
-          <div className="banner-content">
-            <h2>Sensualidade com Conforto</h2>
-            <p>Peças que valorizam seu corpo com o máximo de conforto para o dia a dia.</p>
-            <a href="#produtos" className="banner-btn">Explorar Coleção</a>
-          </div>
-        </div>
-        <div className={`banner-slide ${currentSlide === 2 ? 'active' : ''}`} 
-             style={{backgroundImage: "url('images/banner/banner_img3.png')"}}>
-          <div className="banner-content">
-            <h2>Qualidade que Você Merece</h2>
-            <p>Tecidos selecionados e acabamento impecável para sua satisfação.</p>
-            <a href="#produtos" className="banner-btn">Conhecer Produtos</a>
-          </div>
-        </div>
-        <div className="banner-dots">
-          <div className={`banner-dot ${currentSlide === 0 ? 'active' : ''}`} onClick={() => setCurrentSlide(0)}></div>
-          <div className={`banner-dot ${currentSlide === 1 ? 'active' : ''}`} onClick={() => setCurrentSlide(1)}></div>
-          <div className={`banner-dot ${currentSlide === 2 ? 'active' : ''}`} onClick={() => setCurrentSlide(2)}></div>
-        </div>
-      </div>
-
-      {/* Promotional Section */}
-      <section className="promotional-section">
-        <div className="container">
-          <h2 className="promotional-title">Promoções Especiais</h2>
-          <div className="promotional-cards">
-            <div className="promo-card">
-              <img src="images/promotional/promo_faca_pedido.png" alt="Faça seu pedido" className="promo-card-image" />
-              <div className="promo-card-content">
-                <h3 className="promo-card-title">Felicidade se Constrói</h3>
-                <p className="promo-card-text">Construa sua semana próspera com peças de qualidade que trazem conforto e bem-estar para o seu dia a dia.</p>
-                <a href="#produtos" className="promo-card-button">Faça seu Pedido</a>
-              </div>
-            </div>
-            <div className="promo-card">
-              <img src="images/promotional/promo_semana_prospera.png" alt="Semana próspera" className="promo-card-image" />
-              <div className="promo-card-content">
-                <h3 className="promo-card-title">Semana Próspera</h3>
-                <p className="promo-card-text">Desejamos uma semana próspera e abençoada para você. Aproveite nossas ofertas especiais!</p>
-                <a href="#produtos" className="promo-card-button">Ver Ofertas</a>
-              </div>
-            </div>
-            <div className="promo-card">
-              <div className="promo-card-content">
-                <h3 className="promo-card-title">Novidades da Semana</h3>
-                <p className="promo-card-text">Confira nossas novidades e aproveite descontos especiais em produtos selecionados.</p>
-                <ul style={{textAlign: 'left', marginBottom: '1.5rem'}}>
-                  <li>Box Feminina - Nova coleção</li>
-                  <li>Calcinhas em Cotton - Cores novas</li>
-                  <li>Fio Largo - Promoção especial</li>
-                  <li>Infantil Trix - Estampas exclusivas</li>
-                </ul>
-                <a href="#produtos" className="promo-card-button">Conferir Novidades</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Products */}
-      <section id="produtos" className="products">
-        <div className="container">
-          <h2>Moda Íntima Adulto</h2>
-          <div className="product-grid">
-            {adultProducts.map((product) => (
-              <div key={product.id} className="product-card">
-                <img src={product.image} alt={product.name} />
-                <div className="content">
-                  <h3>{product.name}</h3>
-                  <p className="material">{product.material}</p>
-                  <p className="sizes">{product.sizes}</p>
-                  <p className="price">R$ {product.price.toFixed(2)}</p>
-                  <p className="ref">{product.ref}</p>
-                  <div className="actions">
-                    <button className="btn btn-sm" onClick={() => addToCart(product)}>
-                      Comprar
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* About */}
-      <section id="sobre" className="products">
-        <div className="container">
-          <h2>Sobre a Pele Sensual</h2>
-          <p style={{textAlign: 'center', maxWidth: '800px', margin: '0 auto', fontSize: '1.1rem', lineHeight: '1.8', color: '#666'}}>
-            A Pele Sensual é uma marca de moda íntima que prioriza o conforto, a leveza e a qualidade em todas as suas peças. 
-            Trabalhamos com tecidos de alta qualidade como Microfibra, Modal e Cotton, oferecendo uma variedade de modelos 
-            para atender a todos os gostos e necessidades.
-          </p>
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section id="contato" className="products">
-        <div className="container">
-          <h2>Entre em Contato</h2>
-          <div style={{textAlign: 'center', marginTop: '2rem'}}>
-            <p style={{marginBottom: '1rem', fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
-              <i className="fas fa-phone" style={{color: '#ec4899'}}></i> (85) 99943-6548
-            </p>
-            <p style={{marginBottom: '1rem', fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
-              <i className="fas fa-envelope" style={{color: '#ec4899'}}></i> pelesensualmodaintima@gmail.com
-            </p>
-            <p style={{marginBottom: '1rem', fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
-              <i className="fab fa-whatsapp" style={{color: '#ec4899'}}></i> 
-              <a href="https://wa.me/5585999436548" target="_blank" rel="noopener noreferrer" style={{color: '#ec4899', textDecoration: 'none'}}>
-                WhatsApp
-              </a>
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Cart */}
-      <div className={`cart ${isCartOpen ? 'open' : ''}`}>
-        <div className="cart-header">
-          <h3>Seu Carrinho</h3>
-          <button className="cart-close" onClick={closeCart}>&times;</button>
-        </div>
-        <div className="cart-items">
-          {cartItems.length === 0 ? (
-            <p style={{textAlign: 'center', padding: '2rem', color: '#666'}}>
-              Seu carrinho está vazio
-            </p>
-          ) : (
-            cartItems.map((item, index) => (
-              <div key={index} className="cart-item">
-                <h4>{item.name}</h4>
-                <p>R$ {item.price.toFixed(2)}</p>
-              </div>
-            ))
-          )}
-        </div>
-        {cartItems.length > 0 && (
-          <div className="cart-total">
-            <span>Total: R$ {cartTotal.toFixed(2)}</span>
-          </div>
-        )}
-        <div className="cart-buttons">
-          <a 
-            href={`https://wa.me/5585999436548?text=Olá! Gostaria de finalizar meu pedido no valor de R$ ${cartTotal.toFixed(2)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn"
-            style={{textDecoration: 'none', display: 'block', textAlign: 'center'}}
-          >
-            Finalizar no WhatsApp
-          </a>
-        </div>
-      </div>
-
-      {/* Cart Button */}
-      <div className="cart-button" onClick={toggleCart}>
-        <i className="fas fa-shopping-cart"></i>
-        {cartItemsCount > 0 && <span className="cart-count">{cartItemsCount}</span>}
-      </div>
-
-      {/* Footer */}
-      <footer>
-        <div className="container">
-          <div className="footer-content">
-            <div className="footer-section">
-              <h3>Pele Sensual</h3>
-              <p>Moda íntima com conforto, leveza e qualidade.</p>
-            </div>
-          </div>
-          <div className="copyright">
-            &copy; 2025 Pele Sensual Moda Íntima. Todos os direitos reservados.
-          </div>
-        </div>
-      </footer>
-
-      {/* Cart Overlay */}
-      {isCartOpen && (
-        <div 
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'rgba(0,0,0,0.5)',
-            zIndex: 1999
-          }}
-          onClick={closeCart}
-        />
-      )}
-    </div>
-  );
-}
-
-// Export com Provider
-export default function AppWithProvider() {
-  return (
-    <CartProvider>
-      <App />
-    </CartProvider>
-  );
-}
